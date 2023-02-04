@@ -1,0 +1,222 @@
+swagger: '2.0'
+info:
+  description: Contact Application API
+  version: 1.0.0
+  title: Contact Apllication API
+  contact:
+    # matthewreilly@Knights.ucf.edu
+    email: ross.springstead@Knights.ucf.edu
+    
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+
+# tags are used for organizing operations
+tags:
+- name: admins
+  description: Secured Admin-only calls
+- name: developers
+  description: Operations available to regular developers
+
+paths:
+  /Login.php:
+    post:
+      tags:
+      -  Users
+      summary: Logs in to contacts app
+      operationId: doLogin
+      description: Logs in to contacts app
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: loginItem
+        description: Login
+        schema:
+          $ref: '#/definitions/Login'
+      responses:
+        200:
+          description: OK
+        404:
+          description: URL Not Found
+  /Register.php:
+    post:
+      tags:
+      -  Users
+      summary: creates a new user with no new contacts 
+      operationId: createUser
+      description: takes new username and password and makes new account
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: loginItem
+        description: Register
+        schema:
+          $ref: '#/definitions/Register'
+      responses:
+        200:
+          description: OK
+        404:
+          description: URL Not Found
+  /DisplayContacts.php:
+    post:
+      tags:
+      -  Contacts
+      summary: Displays contacts
+      operationId: displayContacts
+      description: displays user contacts from the contact app database
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: contactItem
+        description: Display Contacts
+        schema:
+          $ref: '#/definitions/DisplayContacts'
+      responses:
+        200:
+          description: OK
+        404:
+          description: URL Not Found
+  /AddContacts.aspx:
+    post:
+      tags:
+      -  Contacts
+      summary: Displays contacts and gives ability to add new contacts
+      operationId: addContact
+      description: Adds a contact to the contact app database
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: contactItem
+        description: Add Contacts
+        schema:
+          $ref: '#/definitions/AddContacts'
+      responses:
+        200:
+          description: OK
+        404:
+          description: URL Not Found
+  #should this still be a .aspx like how it was in color?
+  /SearchContacts.aspx:
+    post:
+      tags:
+      -  Search
+      summary: Searches contacts
+      operationId: searchContact
+      description: Searches contacts from the contact app database
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: searchItem
+        description: Search
+        schema:
+          $ref: '#/definitions/Search'
+      responses:
+        200:
+          description: OK
+        404:
+          description: URL Not Found
+          
+definitions:
+  Login:
+    type: object
+    required:
+    - login
+    - password
+    properties:
+      login:
+        type: string
+        example: "fred"
+      password:
+        type: string
+        example: "secret"
+  Register:
+    type: object
+    required:
+    - firstName
+    - lastName
+    - username
+    - password
+    #- email?
+    #- phone?
+    properties:
+      #change login -> register/username?
+      firstName:
+        type: string
+        example: "Bobby"
+      lastName:
+        type: string
+        example: "Tables"
+      username:
+        type: string
+        example: "username"
+      password:
+        type: string
+        example: "password"
+  DisplayContacts:
+    type: object
+    required:
+    - userId
+    properties:
+      userId:
+        type: integer
+        example: 1
+  AddContacts:
+    type: object
+    required:
+    #- userId
+    - name
+    - email
+    - phone
+    #- dateCreated
+    properties:
+      userId:
+        type: integer
+        example: 1
+      name:
+        type: string
+        example: "Bobby Tables"
+      email:
+        type: string
+        example: "bTables@email.com"
+      phone:
+        type: string
+        example: "000-000-0000"
+  Search:
+    type: object
+    required:
+    # this refers to the current user id to search through their contacts?
+    - userId
+    - search
+    properties:
+      userId:
+        type: integer
+        example: 1
+      search:
+        type: string
+        example: "bl"
+
+#host: COP4331-5.com
+#basePath: /LAMPAPI
+#schemes:
+#- http
+
+basePath: /MATTHEWREILLY/ConntactAppAPI/1.0.0
+# Added by API Auto Mocking Plugin
+host: virtserver.swaggerhub.com
+schemes:
+ - https
