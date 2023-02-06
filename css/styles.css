@@ -1,140 +1,137 @@
-body 
-{
-    background-color: #707070;
+/* Universal Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-#title 
-{
-    font-size: 40px;
+/* Font Settings */
+:root { font-family: 'Inter', sans-serif; }
+@supports (font-variation-settings: normal) {
+  :root { font-family: 'Inter var', sans-serif; }
+}
+
+/* Global Settings */
+:root {
+    --font-size-header: 30px;
+    --font-size-subheading: 24px;
+    --font-size-input-labels: 18px;
+}
+
+/* Flex Sections */
+
+.container {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.page {
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    width: 95%;
+}
+
+.section {
     width: 100%;
-    margin: 2% 5%;
-    text-align: center;
-    font-family: 'Ubuntu', sans-serif;
-    color: #FFFFFF;
+    height: auto;
+    display: flex;
+    justify-content: left;
+    /* align-items: center; */
 }
 
-#loginDiv
-{
-    font-size: 30px;
-    width: 70%;
-    margin-left: 15%;
-    padding: 25px;
-    background-color: #b2b2b2;
+.image {
+    justify-content: center;
+    display: none;
+    border-radius: 40px;
+    height: 90%;
 }
 
-#loggedInDiv
-{
-    font-size: 30px;
-    width: 70%;
-    margin-left: 15%;
-    padding: 25px;
-    background-color: #b2b2b2;
+.header {
+    height: auto;
+    /* background-color: #B2D6FF; */
+    font-size: var(--font-size-header);
+    margin-bottom: 10px;
 }
 
-#accessUIDiv
-{
-    font-size: 30px;
-    width: 70%;
-    margin-left: 15%;
-    padding: 25px;
-    background-color: #b2b2b2;
+.sign-up {
+    /* background-color: #EAEDF0; */
+    font-size: 12px;
+    height: auto;
+    padding-bottom: 60px;
+    font-size: var(--font-size-subheading)
 }
 
-.buttons
-{
-    font-size: 30px;
+.input-header {
+    font-size: var(--font-size-input-labels);
+    margin-bottom: 5px;
+}
+
+.username, .password {
+    /* background-color: #D6E9FE; */
+    height: 50px;
+    margin-bottom: 20px;
+}
+
+.sign-in {
+    /* background-color: #F09A9D; */
+    height: 50px;
+    width: 100%;
+}
+
+.result {
+    height: 30px;
+}
+
+/* Elements CSS */
+
+img {
+    max-width: 90%;
+    max-height: 100%;
+    object-fit: cover;
     border-radius: 25px;
-    width: 50%;
-    margin-left: 25%;
-    font-family: 'Ubuntu', sans-serif;
-}
-
-.buttons:hover{
-    background-color: #00d5124f;
-    color: #FFFFFF;
-    opacity: 50%;
-}
-
-#loginName
-{
-	font-size: 30px;
-}
-#loginPassword
-{
-	font-size: 30px;
-}
-#searchText
-{
-	font-size: 30px;
-}
-#colorText
-{
-	font-size: 30px;
 }
 
 input[type="text"],input[type="password"]{
-    border-radius: 25px;
-    text-align: center;
-    width: 80%;
-    margin-left: 10%;
+    text-align: left;
+    font-size: 18px;
+    width: 100%;
     margin-bottom: 2%;
-    font-family: 'Ubuntu', sans-serif;
 }
 
-#inner-title{
-    display: inline-block;
-    font-size: 0.8em;
-    width: 90%;
-    text-align: center;
-    margin-left: 5%;
-    margin-bottom: 2%;
-    font-family: 'Ubuntu', sans-serif;
-    color: #95060a;
+a {
+    color: #000000;
+    text-decoration: underline;
 }
 
-#loginResult{
-    display: inline-block;
-    font-size: 0.8em;
-    width: 90%;
-    text-align: center;
-    margin-left: 5%;
-    margin-bottom: 2%;
-    font-family: 'Ubuntu', sans-serif;
-    color: #95060a;
-}
-
-#userName{
-    display: inline-block;
-    width: 80%;
-    margin-left: 10%;
+button {
+    display: block;
+    width: 100%;
+    border: none;
+    background-color: #000000;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
     text-align: center;
 }
 
-#logoutButton{
-    width: 20%;
-    margin-left: 40%;
+/* Tablet Styles */
+@media only screen and (min-width: 401px) and (max-width: 960px) {
+    .page {
+        width: 80%;
+    }
 }
 
-select{
-    width: 30%;
-    margin-left: 35%;
-    margin-top: 2%;
-    font-size: 0.75em;
-    font-family: 'Ubuntu', sans-serif;
-}
+/* Desktop Styles */
+@media only screen and (min-width: 961px) {
+    .image {
+        display: flex;
+        width: 50%;
+    }
 
-#colorSearchResult{
-    display: none;
-}
-
-#colorAddResult{
-    display: inline-block;
-    font-size: 0.8em;
-    width: 90%;
-    text-align: center;
-    margin-left: 5%;
-    margin-top: 2%;
-    margin-bottom: 1%;
-    font-family: 'Ubuntu', sans-serif;
-    color: #95060a;
+    .page {
+        width: 45%;
+    }
 }
