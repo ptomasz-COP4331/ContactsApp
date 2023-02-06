@@ -1,6 +1,6 @@
 <?php
 	$inData = getRequestInfo();
-	
+
 	$firstname = $inData["firstname"];
 	$lastname = $inData["lastname"];
 	$login = $inData["login"];
@@ -31,11 +31,11 @@
 		header('Content-type: application/json');
 		echo $obj;
 	}
-	
+
 	function returnWithError( $err )
 	{
 		$retValue = '{"error":"' . $err . '"}';
 		sendResultInfoAsJson( $retValue );
 	}
-	
+
 ?>

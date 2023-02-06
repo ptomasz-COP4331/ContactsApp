@@ -1,12 +1,10 @@
 <?php
 	$inData = getRequestInfo();
-
-	// Unsure of needing userID and date?
-	// $userID = $inData["userID"];
+	
 	$name = $inData["name"];
 	$email = $inData["email"];
 	$phone = $inData["phone"];
-	// $date = $inData["date"];
+	$userid = $inData["userid"];
 
 	$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
 	if ($conn->connect_error) 
@@ -15,9 +13,8 @@
 	} 
 	else
 	{
-		// Not sure what the line that follow does, if it is unseen by user it should include a UserID and DateCreated I think. (Users should not be in charge of ID making)
-		$stmt = $conn->prepare("INSERT into Contacts (Name, Email, Phone) VALUES(?,?,?)");
-		$stmt->bind_param("sss", $name, $email, $phone);			// need to figure out what bind param means
+		$stmt = $conn->prepare("INSERT into Contacts (Name,Email,Phone,UserID) VALUES(?,?,?,?)");
+		$stmt->bind_param("ssss", $name, $email, $phone, $userid);
 		$stmt->execute();
 		$stmt->close();
 		$conn->close();
