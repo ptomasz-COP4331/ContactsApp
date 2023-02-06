@@ -68,7 +68,7 @@
     margin-bottom: 5px;
 }
 
-.username, .password {
+.firstname, .lastname, .username, .password {
     /* background-color: #D6E9FE; */
     height: 50px;
     margin-bottom: 20px;
