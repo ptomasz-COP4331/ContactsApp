@@ -13,10 +13,12 @@
 
 /* Global Settings */
 :root {
+    --bg-color: #fcfbfa;
     --font-size-header: 30px;
     --font-size-subheading: 24px;
     --font-size-input-labels: 18px;
-}
+    /* background-color: var(--bg-color); */
+  }
 
 /* Flex Sections */
 
@@ -80,6 +82,10 @@
     width: 100%;
 }
 
+.search {
+    margin-bottom: 20px;
+}
+
 .result {
     height: 30px;
 }
@@ -93,9 +99,9 @@ img {
     border-radius: 25px;
 }
 
-input[type="text"],input[type="password"]{
+input[type="text"],input[type="password"], input[type="contact-input"]{
     text-align: left;
-    font-size: 18px;
+    font-size: 16px;
     width: 100%;
     margin-bottom: 2%;
 }
@@ -124,16 +130,14 @@ a {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 10px;
+    margin-top: 30px;
     margin-bottom: 30px;
 }
 
-
-
-
-
-
-
+table {
+    table-layout: fixed;
+    width: 100%;
+}
 
 /* Tablet Styles */
 @media only screen and (min-width: 401px) and (max-width: 960px) {

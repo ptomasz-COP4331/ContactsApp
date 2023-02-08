@@ -1,0 +1,198 @@
+/* Universal Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Font Settings */
+:root { font-family: 'Inter', sans-serif; }
+@supports (font-variation-settings: normal) {
+:root { font-family: 'Inter var', sans-serif; }
+}
+
+/* Global Settings */
+:root {
+  --bg-color: #fcfbfa;
+  --font-size-header: 30px;
+  --font-size-subheading: 24px;
+  --font-size-input-labels: 18px;
+  background-color: var(--bg-color);
+}
+
+/* Flex Sections */
+
+.container {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.page {
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+  width: 95%;
+}
+
+.section {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: left;
+  /* align-items: center; */
+}
+
+.header {
+  height: auto;
+  /* background-color: #B2D6FF; */
+  font-size: var(--font-size-header);
+  margin-bottom: 10px;
+}
+
+.sign-up {
+  /* background-color: #EAEDF0; */
+  font-size: 12px;
+  height: auto;
+  padding-bottom: 60px;
+  font-size: var(--font-size-subheading)
+}
+
+.input-header {
+  font-size: var(--font-size-input-labels);
+  margin-bottom: 5px;
+}
+
+.firstname, .lastname, .username, .password {
+  /* background-color: #D6E9FE; */
+  height: 50px;
+  margin-bottom: 20px;
+}
+
+.sign-in {
+  /* background-color: #F09A9D; */
+  height: 50px;
+  width: 100%;
+}
+
+.search {
+  margin-bottom: 20px;
+  height: 60px
+}
+
+.result {
+  height: 30px;
+}
+
+/* Elements CSS */
+
+img {
+  max-width: 90%;
+  max-height: 100%;
+  object-fit: cover;
+  border-radius: 25px;
+}
+
+input[type="contact-input"]{
+  font-family: 'IBM Plex Sans', sans-serif;
+  background-color: #fcfbfa;
+  text-align: left;
+  font-size: 16px;
+  width: 100%;
+  margin-bottom: 2%;
+  border-radius: 5px;
+  border: none;
+}
+
+a {
+  color: #000000;
+  text-decoration: underline;
+}
+
+/* Buttons */
+
+.enterButton {
+  display: block;
+  width: 100%;
+  border: none;
+  background-color: #000000;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.logoutButton {
+  display: block;
+  width: 100%;
+  border: none;
+  background-color: var(--bg-color);
+  /* color: var(--bg-color); */
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Contact Page */
+
+.menu {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.menu-username {
+  font-weight: bold;
+}
+
+input:focus {
+  outline:none;
+}
+
+table {
+  table-layout: fixed;
+  width: 100%;
+  /* border: 1px solid #8d8c8d; */
+  border-radius: 5px;
+  /* background-color: #f6f6f6; */
+}
+
+#contacts th {
+  padding: 15px;
+  text-align: center;
+}
+
+#contacts td {
+  padding: 10px;
+  text-align: left;
+  font-family: 'IBM Plex Sans', sans-serif;
+  vertical-align: middle;
+  font-size: 15px;
+}
+
+#contacts td span {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 100%;
+}
+
+/* Tablet Styles */
+@media only screen and (min-width: 401px) and (max-width: 960px) {
+  .page {
+      width: 80%;
+  }
+}
+
+/* Desktop Styles */
+@media only screen and (min-width: 961px) {
+  .page {
+      width: 65%;
+  }
+}

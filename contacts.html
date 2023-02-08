@@ -3,11 +3,18 @@
     <meta charset='UTF-8'/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Contacts</title>
-    <link href="css/styles.css" rel="stylesheet">	
+    <link href="css/contact-styles.css" rel="stylesheet">	
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://rsms.me/">
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap" rel="stylesheet">
+
+    <!-- JS -->
     <script type="text/javascript" src="js/code.js"></script>
-    
+
     <!-- TODO: Add back once done testing -->
     <!-- <script type="text/javascript"> -->
     <!-- document.addEventListener('DOMContentLoaded', function()  -->
@@ -23,24 +30,30 @@
           Ivy Zhang
         </div>
         <div class='logout'>
-          <button type="button" id="logoutButton" class="buttons" onclick="doLogout();">Log Out</button>
+          <button type="button" id="logoutButton" class="logoutButton" onclick="doLogout();">Log Out</button>
         </div>
       </div>
       <div class='section search'>
-        <div class='search-bar'>
-          <input type="contact-input" id="contactSearch"/><br /> 
-        </div>
+        <input type="contact-input" id="contactSearch" placeholder='Search'/><br /> 
       </div>
       <div class='section contacts'>
         <div class='contacts-table'>
-          <table>
-            <tr>
-              <th>First</th>
-              <th>Last</th>
-              <th>Email</th>
-              <th>Phone #</th>
+          <table id='contacts'>
+            <thead>
+              <th>FIRST</th>
+              <th>LAST</th>
+              <th>EMAIL</th>
+              <th>PHONE</th>
               <th></th>
-            </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span>Ivy</span></td>
+                <td><span>Zhang</span></td>
+                <td><span>email@emial.com</span></td>
+                <td><span>123-123-1231</span></td>
+              </tr>
+            </tbody>
           </table>
         </div>
       </div>
