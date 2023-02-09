@@ -210,14 +210,14 @@ function filterContacts() {
 function toggleAddForm() 
 {
 	let addForm = document.getElementById('add-contact-form')
-	let contactsTable = document.getElementByID('contacts')
+	let contactsTable = document.getElementById('contacts')
 
 	if (addForm.style.display == 'none') {
 		addForm.style.display = 'block';
 		contactsTable.style.display = 'none';
 	} else {
 		addForm.style.display = 'none';
-		contactsTable.style.display = 'none';
+		contactsTable.style.display = 'flex';
 	}
 }
 
