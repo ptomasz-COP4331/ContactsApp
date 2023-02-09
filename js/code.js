@@ -147,7 +147,9 @@ function editContact()
 
 function removeContact()
 {
-
+	let deleteContact = document.getElementById("deleteContactText").value;
+	document.getElementById("")
+	
 }
 
 function searchContacts()
