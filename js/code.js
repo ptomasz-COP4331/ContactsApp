@@ -110,7 +110,7 @@ function doLogout()
 
 function addContact()
 {
-	let newColor = document.getElementById("contactText").value;
+	let newContact = document.getElementById("contactText").value;
 	document.getElementById("contactAddResult").innerHTML = "";
 
 	let tmp = {contact:newContact,userId,userId};
@@ -137,6 +137,17 @@ function addContact()
 		document.getElementById("contactAddResult").innerHTML = err.message;
 	}
 	
+}
+
+function editContact()
+{
+	let editContact = document.getElementById("editContactText").value;
+	document.getElementById("")
+}
+
+function removeContact()
+{
+
 }
 
 function searchContacts()
