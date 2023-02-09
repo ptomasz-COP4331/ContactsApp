@@ -181,5 +181,18 @@ function searchColor()
 	{
 		document.getElementById("colorSearchResult").innerHTML = err.message;
 	}
-	
+}
+
+function toggleAddForm() 
+{
+	let addForm = document.getElementsById('add-contact-form')
+	let contactsTable = document.getElementByID('contacts')
+
+	if (addForm.style.display == 'none') {
+		addForm.style.display = 'block';
+		contactsTable.style.display = 'none';
+	} else {
+		addForm.style.display = 'none';
+		contactsTable.style.display = 'none';
+	}
 }

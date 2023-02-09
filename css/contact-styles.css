@@ -93,9 +93,9 @@ img {
   border-radius: 25px;
 }
 
-input[type="contact-input"]{
+input[type="search"] {
   font-family: 'IBM Plex Sans', sans-serif;
-  background-color: #fcfbfa;
+  background-color: var(--background-color);
   text-align: left;
   font-size: 16px;
   width: 100%;
@@ -158,9 +158,72 @@ a {
   font-weight: bold;
 }
 
+/* Search Bar */
+
 input:focus {
   outline:none;
 }
+
+/* Contact Form */
+
+.contact-form {
+  /* background-color: #F6F7F8;
+  border: 1px solid #D6D9DC; */
+  /* border-radius: 3px; */
+  
+  width: 80%;
+  /* padding: 50px; */
+  margin: 40px 0 40px 0;
+}
+
+.form-row {
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.form-row input[type='text'],
+.form-row input[type='email'] {
+  font-family: 'IBM Plex Sans', sans-serif;
+  background-color: var(--background-color);
+  border: none;
+  width: 100%;
+  font-size: 14px;
+}
+
+.form-row input[type='text']:invalid,
+.form-row input[type='email']:invalid {
+  border: 1px solid #D55C5F;
+  border-radius: 3px;
+  /* color: #D55C5F; */
+  box-shadow: none; /* Remove default red glow in Firefox */
+}
+
+.form-row button {
+  font-size: 16px;
+  font-weight: bold;
+
+  color: #FFFFFF;
+  background-color: #5995DA;
+
+  border: none;
+  border-radius: 3px;
+
+  padding: 10px 40px;
+  cursor: pointer;
+}
+
+.form-row button:hover {
+  background-color: #76AEED;
+}
+
+.form-row button:active {
+  background-color: #407FC7;
+}
+
+/* Table */
 
 table {
   table-layout: fixed;
