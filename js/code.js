@@ -142,14 +142,63 @@ function addContact()
 function editContact()
 {
 	let editContact = document.getElementById("editContactText").value;
-	document.getElementById("")
+	document.getElementById("contactEditResult").innerHTML = "";
+
+	let tmp = {contact:editContact, userId, userID};
+	let jsonPayload = JSON.stringify( tmp );
+
+	let url = urlBase + '/EditContact.' + extension;
+
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	try
+	{
+		xhr.onreadystatechange = function() 
+		{
+			if (this.readyState == 4 && this.status == 200) 
+			{
+				document.getElementById("contactEditResult").innerHTML = "Contact information has been updated";
+			}
+		};
+		xhr.send(jsonPayload);
+	}
+	catch(err)
+	{
+		document.getElementById("contactEditResult").innerHTML = err.message;
+	}
 }
 
 function removeContact()
 {
 	let deleteContact = document.getElementById("deleteContactText").value;
-	document.getElementById("")
-	
+	document.getElementById("deleteContactResult").innerHTML = "";
+
+	let tmp = {remove:deleteContact, userID, userID};
+	let jsonPayload = JSON.stringify( tmp );
+
+	let url = urlBase + '/DeleteContact.' + extension;
+
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	try
+	{
+		xhr.onreadystatechange = function() 
+		{
+			if (this.readyState == 4 && this.status == 200) 
+			{
+				// SOME WORK NEED TO BE DONE IN THIS SECTION TO DELETE
+				// I also think there needs to be a confirmation text that ask if the object actually wants to be removed.
+			}
+		};
+		xhr.send(jsonPayload);
+	}
+	catch(err)
+	{
+		document.getElementById("contactDeleteResult").innerHTML = err.message;
+	}
+
 }
 
 function searchContacts()
