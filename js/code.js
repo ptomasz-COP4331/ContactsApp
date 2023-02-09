@@ -183,6 +183,30 @@ function searchColor()
 	}
 }
 
+function filterContacts() {
+	// Filter through contact table for names
+	let search = document.getElementById("contactSearch");
+	let searchIn = search.value.toUpperCase();
+	let table = document.getElementById("contacts");
+  let tr = table.getElementsByTagName("tr");
+  for (let i = 0; i < tr.length; i++) {
+    let first = tr[i].getElementsByTagName("td")[0];
+		let last = tr[i].getElementsByTagName("td")[1];
+
+    if (first && last) {
+      let firstText = first.textContent || first.innerText;
+			let lastText = last.textContent || last.innerText;
+      if (firstText.toUpperCase().indexOf(searchIn) > -1) {
+        tr[i].style.display = "";
+			} else if (lastText.toUpperCase().indexOf(searchIn) > -1) {
+				tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+
 function toggleAddForm() 
 {
 	let addForm = document.getElementById('add-contact-form')
@@ -196,3 +220,4 @@ function toggleAddForm()
 		contactsTable.style.display = 'none';
 	}
 }
+
