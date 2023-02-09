@@ -16,22 +16,22 @@
     <script type="text/javascript" src="js/code.js"></script>
 
     <!-- TODO: Add back once done testing -->
-    <!-- <script type="text/javascript"> -->
-    <!-- document.addEventListener('DOMContentLoaded', function()  -->
-    <!-- { -->
-      <!-- readCookie(); -->
-    <!-- }, false); -->
-    <!-- </script> -->
+    <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function()
+    {
+      readCookie();
+    }, false);
+    </script>
   </head>
   <body>
     <div class='page'>
       <div class='section menu'>
         <div class='menu-username'>
-          Ivy Zhang
+          <span id="userName"></span>
         </div>
         <div class='actionButtons'>
           <div class='menu-addcontact'>          
-            <button type="button" id="addContactButton" class="addContactButton" onclick="showAddForm();">Add Contact</button>
+            <button type="button" id="addContactButton" class="addContactButton" onclick="toggleAddForm();">Add Contact</button>
           </div>
           <div class='menu-logout'>
             <button type="button" id="logoutButton" class="logoutButton" onclick="doLogout();">Log Out</button>
