@@ -185,7 +185,7 @@ function searchColor()
 
 function toggleAddForm() 
 {
-	let addForm = document.getElementsById('add-contact-form')
+	let addForm = document.getElementById('add-contact-form')
 	let contactsTable = document.getElementByID('contacts')
 
 	if (addForm.style.display == 'none') {
