@@ -4,6 +4,7 @@
 	$name = $inData["name"];
 	$email = $inData["email"];
 	$phone = $inData["phone"];
+	//$date = $inData["date"];
 	$userid = $inData["userid"];
 
 	$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
@@ -13,9 +14,23 @@
 	} 
 	else
 	{
-		$stmt = $conn->prepare("Edit Contact's (Name,Email,Phone,UserID) VALUES(?,?,?,?)");
-		$stmt->bind_param("ssss", $name, $email, $phone, $userid);
+		$stmt = $conn->prepare("Edit Contact (UserID) VALUES(?)");
+		$stmt->bind_param("s", $userid);
 		$stmt->execute();
+
+		$result = $stmt->get_result();
+
+		$row = $result->fetch_assoc()
+		
+		$row['Name'] = $name;
+		$row['Email'] = $email;
+		$row['Phone'] = $phone;
+		//$row['Name'] = $name;
+
+
+		returnWithInfo( $row['Name'], $row['Email'], $row['Phone'], $row['DateCreated'] );
+
+
 		$stmt->close();
 		$conn->close();
 		returnWithError("");
