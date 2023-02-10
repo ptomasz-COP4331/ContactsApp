@@ -72,7 +72,7 @@ function doSignup () {
   const password = document.getElementById('signupPassword').value
   const hash = md5(password)
 
-  document.getElementById('loginResult').innerHTML = ''
+  document.getElementById('signupResult').innerHTML = ''
 
   // const tmp = { login, password }
   const tmp = {
@@ -90,14 +90,21 @@ function doSignup () {
   xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8')
   try {
     xhr.onreadystatechange = function () {
+      // JSON object not ready yet
+      if (this.readyState !== 4) {
+        return
+      }
+
+      // Username conflict
+      if (this.status === 409) {
+        document.getElementById('signupResult').innerHTML = 'Username already taken'
+        return
+      }
+
+      // TODO: Handle username conflict which is error 409
       if (this.readyState === 4 && this.status === 200) {
         const jsonObject = JSON.parse(xhr.responseText)
         userId = jsonObject.id
-
-        if (userId < 1) {
-          document.getElementById('loginResult').innerHTML = 'User/Password combination incorrect'
-          return
-        }
 
         firstName = jsonObject.firstName
         lastName = jsonObject.lastName
@@ -109,7 +116,7 @@ function doSignup () {
     }
     xhr.send(jsonPayload)
   } catch (err) {
-    document.getElementById('loginResult').innerHTML = err.message
+    document.getElementById('signupResult').innerHTML = err.message
   }
 }
 
