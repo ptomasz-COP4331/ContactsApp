@@ -65,7 +65,7 @@
 	function returnWithInfo( $Name, $Email, $Phone, $Date )
 	{
 		
-		$retValue = '{"name": '. $Name .', "email": '. $Email.', "phone": '. $Phone .', "date": ' . $Date .' }';
+		$retValue = '["name": '. $Name .', "email": '. $Email.', "phone": '. $Phone .', "date": ' . $Date .' ]';
 		sendResultInfoAsJson( $retValue );
 	}
 	
