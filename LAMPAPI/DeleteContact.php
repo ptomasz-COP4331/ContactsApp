@@ -10,9 +10,8 @@
 	} 
 	else
 	{
-		$stmt = $conn->prepare("Delete From Contacts from ID=?");
+		$stmt = $conn->prepare("Delete FROM Contacts WHERE ID=?");
 		$stmt->bind_param("s", $ID);
-		
 		$stmt->execute();
 		$stmt->close();
 		$conn->close();
