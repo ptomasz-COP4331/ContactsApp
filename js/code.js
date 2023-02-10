@@ -1,286 +1,258 @@
-const urlBase = 'http://COP4331-23.com/LAMPAPI';
-const extension = 'php';
+const urlBase = 'http://COP4331-23.com/LAMPAPI'
+const extension = 'php'
 
-let userId = 0;
-let firstName = "";
-let lastName = "";
+let userId = 0
+let firstName = ''
+let lastName = ''
 
-function doLogin()
-{
-	userId = 0;
-	firstName = "";
-	lastName = "";
-	
-	let login = document.getElementById("loginName").value;
-	let password = document.getElementById("loginPassword").value;
-//	var hash = md5( password );
-	
-	document.getElementById("loginResult").innerHTML = "";
+function doLogin () {
+  userId = 0
+  firstName = ''
+  lastName = ''
 
-	let tmp = {login:login,password:password};
-//	var tmp = {login:login,password:hash};
-	let jsonPayload = JSON.stringify( tmp );
-	
-	let url = urlBase + '/Login.' + extension;
+  const login = document.getElementById('loginName').value
+  const password = document.getElementById('loginPassword').value
+  // var hash = md5( password );
 
-	let xhr = new XMLHttpRequest();
-	xhr.open("POST", url, true);
-	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-	try
-	{
-		xhr.onreadystatechange = function() 
-		{
-			if (this.readyState == 4 && this.status == 200) 
-			{
-				let jsonObject = JSON.parse( xhr.responseText );
-				userId = jsonObject.id;
-		
-				if( userId < 1 )
-				{		
-					document.getElementById("loginResult").innerHTML = "User/Password combination incorrect";
-					return;
-				}
-		
-				firstName = jsonObject.firstName;
-				lastName = jsonObject.lastName;
+  document.getElementById('loginResult').innerHTML = ''
 
-				saveCookie();
-	
-				window.location.href = "contacts.html";
-			}
-		};
-		xhr.send(jsonPayload);
-	}
-	catch(err)
-	{
-		document.getElementById("loginResult").innerHTML = err.message;
-	}
+  const tmp = { login, password }
+  // var tmp = {login:login,password:hash};
+  const jsonPayload = JSON.stringify(tmp)
 
-}
+  const url = urlBase + '/Login.' + extension
 
-function saveCookie()
-{
-	let minutes = 20;
-	let date = new Date();
-	date.setTime(date.getTime()+(minutes*60*1000));	
-	document.cookie = "firstName=" + firstName + ",lastName=" + lastName + ",userId=" + userId + ";expires=" + date.toGMTString();
-}
+  const xhr = new XMLHttpRequest()
+  xhr.open('POST', url, true)
+  xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8')
+  try {
+    xhr.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        const jsonObject = JSON.parse(xhr.responseText)
+        userId = jsonObject.id
 
-function readCookie()
-{
-	userId = -1;
-	let data = document.cookie;
-	let splits = data.split(",");
-	for(var i = 0; i < splits.length; i++) 
-	{
-		let thisOne = splits[i].trim();
-		let tokens = thisOne.split("=");
-		if( tokens[0] == "firstName" )
-		{
-			firstName = tokens[1];
-		}
-		else if( tokens[0] == "lastName" )
-		{
-			lastName = tokens[1];
-		}
-		else if( tokens[0] == "userId" )
-		{
-			userId = parseInt( tokens[1].trim() );
-		}
-	}
-	
-	if( userId < 0 )
-	{
-		window.location.href = "index.html";
-	}
-	else
-	{
-		document.getElementById("userName").innerHTML = firstName + " " + lastName;
-	}
-}
+        if (userId < 1) {
+          document.getElementById('loginResult').innerHTML = 'User/Password combination incorrect'
+          return
+        }
 
-function doLogout()
-{
-	userId = 0;
-	firstName = "";
-	lastName = "";
-	document.cookie = "firstName= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
-	window.location.href = "index.html";
-}
+        firstName = jsonObject.firstName
+        lastName = jsonObject.lastName
 
-function addContact()
-{
-	let newContact = document.getElementById("contactText").value;
-	document.getElementById("contactAddResult").innerHTML = "";
+        saveCookie()
 
-	let tmp = {contact:newContact,userId,userId};
-	let jsonPayload = JSON.stringify( tmp );
-
-	let url = urlBase + '/AddContact.' + extension;
-	
-	let xhr = new XMLHttpRequest();
-	xhr.open("POST", url, true);
-	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-	try
-	{
-		xhr.onreadystatechange = function() 
-		{
-			if (this.readyState == 4 && this.status == 200) 
-			{
-				document.getElementById("contactAddResult").innerHTML = "Contact has been added";
-			}
-		};
-		xhr.send(jsonPayload);
-	}
-	catch(err)
-	{
-		document.getElementById("contactAddResult").innerHTML = err.message;
-	}
-	
-}
-
-function editContact()
-{
-	let editContact = document.getElementById("editContactText").value;
-	document.getElementById("contactEditResult").innerHTML = "";
-
-	let tmp = {contact:editContact, userId, userID};
-	let jsonPayload = JSON.stringify( tmp );
-
-	let url = urlBase + '/EditContact.' + extension;
-
-	let xhr = new XMLHttpRequest();
-	xhr.open("POST", url, true);
-	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-	try
-	{
-		xhr.onreadystatechange = function() 
-		{
-			if (this.readyState == 4 && this.status == 200) 
-			{
-				document.getElementById("contactEditResult").innerHTML = "Contact information has been updated";
-			}
-		};
-		xhr.send(jsonPayload);
-	}
-	catch(err)
-	{
-		document.getElementById("contactEditResult").innerHTML = err.message;
-	}
-}
-
-function removeContact()
-{
-	let deleteContact = document.getElementById("deleteContactText").value;
-	document.getElementById("deleteContactResult").innerHTML = "";
-
-	let tmp = {remove:deleteContact, userID, userID};
-	let jsonPayload = JSON.stringify( tmp );
-
-	let url = urlBase + '/DeleteContact.' + extension;
-
-	let xhr = new XMLHttpRequest();
-	xhr.open("POST", url, true);
-	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-	try
-	{
-		xhr.onreadystatechange = function() 
-		{
-			if (this.readyState == 4 && this.status == 200) 
-			{
-				// SOME WORK NEED TO BE DONE IN THIS SECTION TO DELETE
-				// I also think there needs to be a confirmation text that ask if the object actually wants to be removed.
-			}
-		};
-		xhr.send(jsonPayload);
-	}
-	catch(err)
-	{
-		document.getElementById("contactDeleteResult").innerHTML = err.message;
-	}
-
-}
-
-function searchContacts()
-{
-	let srch = document.getElementById("searchText").value;
-	document.getElementById("contactSearchResult").innerHTML = "";
-	
-	let contactList = "";
-
-	let tmp = {search:srch,userId:userId};
-	let jsonPayload = JSON.stringify( tmp );
-
-	let url = urlBase + '/SearchContacts.' + extension;
-	
-	let xhr = new XMLHttpRequest();
-	xhr.open("POST", url, true);
-	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-	try
-	{
-		xhr.onreadystatechange = function() 
-		{
-			if (this.readyState == 4 && this.status == 200) 
-			{
-				document.getElementById("contactSearchResult").innerHTML = "Contact(s) has been retrieved";
-				let jsonObject = JSON.parse( xhr.responseText );
-				
-				for( let i=0; i<jsonObject.results.length; i++ )
-				{
-					contactList += jsonObject.results[i];
-					if( i < jsonObject.results.length - 1 )
-					{
-						contactList += "<br />\r\n";
-					}
-				}
-				
-				document.getElementsByTagName("p")[0].innerHTML = contactList;
-			}
-		};
-		xhr.send(jsonPayload);
-	}
-	catch(err)
-	{
-		document.getElementById("contactSearchResult").innerHTML = err.message;
-	}
-	
-}
-
-function filterContacts() {
-	// Filter through contact table for names
-	let search = document.getElementById("contactSearch");
-	let searchIn = search.value.toUpperCase();
-	let table = document.getElementById("contacts");
-  let tr = table.getElementsByTagName("tr");
-  for (let i = 0; i < tr.length; i++) {
-    let first = tr[i].getElementsByTagName("td")[0];
-		let last = tr[i].getElementsByTagName("td")[1];
-
-    if (first && last) {
-      let firstText = first.textContent || first.innerText;
-			let lastText = last.textContent || last.innerText;
-      if (firstText.toUpperCase().indexOf(searchIn) > -1) {
-        tr[i].style.display = "";
-			} else if (lastText.toUpperCase().indexOf(searchIn) > -1) {
-				tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
+        window.location.href = 'contacts.html'
       }
-    }       
+    }
+    xhr.send(jsonPayload)
+  } catch (err) {
+    document.getElementById('loginResult').innerHTML = err.message
   }
 }
 
-function toggleAddForm() 
-{
-	let addForm = document.getElementById('add-contact-form')
-	let contactsTable = document.getElementById('contacts')
-
-	if (addForm.style.display == 'none') {
-		addForm.style.display = 'block';
-		contactsTable.style.display = 'none';
-	} else {
-		addForm.style.display = 'none';
-		contactsTable.style.display = 'flex';
-	}
+function saveCookie () {
+  const minutes = 20
+  const date = new Date()
+  date.setTime(date.getTime() + (minutes * 60 * 1000))
+  document.cookie = 'firstName=' + firstName + ',lastName=' + lastName + ',userId=' + userId + ';expires=' + date.toGMTString()
 }
 
+function readCookie () {
+  userId = -1
+  const data = document.cookie
+  const splits = data.split(',')
+  for (let i = 0; i < splits.length; i++) {
+    const thisOne = splits[i].trim()
+    const tokens = thisOne.split('=')
+    if (tokens[0] == 'firstName') {
+      firstName = tokens[1]
+    } else if (tokens[0] == 'lastName') {
+      lastName = tokens[1]
+    } else if (tokens[0] == 'userId') {
+      userId = parseInt(tokens[1].trim())
+    }
+  }
+
+  if (userId < 0) {
+    window.location.href = 'index.html'
+  } else {
+    document.getElementById('userName').innerHTML = firstName + ' ' + lastName
+  }
+}
+
+function doLogout () {
+  userId = 0
+  firstName = ''
+  lastName = ''
+  document.cookie = 'firstName= ; expires = Thu, 01 Jan 1970 00:00:00 GMT'
+  window.location.href = 'index.html'
+}
+
+function addContact () {
+  const cfn = document.getElementById('contact-first-name').value
+  const cln = document.getElementById('contact-last-name').value
+  const fpn = document.getElementById('contact-pnumber').value
+  const cem = document.getElementById('contact-email').value
+
+  const tmp = {
+    userId,
+    firstName: cfn,
+    lastName: cln,
+    number: fpn,
+    email: cem
+  }
+
+  const jsonPayload = JSON.stringify(tmp)
+
+  const url = urlBase + '/AddContact.' + extension
+
+  const xhr = new XMLHttpRequest()
+  xhr.open('POST', url, true)
+  xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8')
+  try {
+    xhr.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        console.log('New contact added')
+        loadContacts()
+      }
+    }
+    xhr.send(jsonPayload)
+  } catch (err) {
+    console.log(err.message)
+  }
+}
+
+function editContact () {
+  const editContact = document.getElementById('editContactText').value
+  document.getElementById('contactEditResult').innerHTML = ''
+
+  const tmp = { contact: editContact, userId, userID }
+  const jsonPayload = JSON.stringify(tmp)
+
+  const url = urlBase + '/EditContact.' + extension
+
+  const xhr = new XMLHttpRequest()
+  xhr.open('POST', url, true)
+  xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8')
+  try {
+    xhr.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById('contactEditResult').innerHTML = 'Contact information has been updated'
+      }
+    }
+    xhr.send(jsonPayload)
+  } catch (err) {
+    document.getElementById('contactEditResult').innerHTML = err.message
+  }
+}
+
+function removeContact () {
+  const deleteContact = document.getElementById('deleteContactText').value
+  document.getElementById('deleteContactResult').innerHTML = ''
+
+  const tmp = { remove: deleteContact, userID, userID }
+  const jsonPayload = JSON.stringify(tmp)
+
+  const url = urlBase + '/DeleteContact.' + extension
+
+  const xhr = new XMLHttpRequest()
+  xhr.open('POST', url, true)
+  xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8')
+  try {
+    xhr.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        // SOME WORK NEED TO BE DONE IN THIS SECTION TO DELETE
+        // I also think there needs to be a confirmation text that ask if the object actually wants to be removed.
+      }
+    }
+    xhr.send(jsonPayload)
+  } catch (err) {
+    document.getElementById('contactDeleteResult').innerHTML = err.message
+  }
+}
+
+/**
+ * loadContacts()
+ * Populates the table with contacts of user
+ * Note: Does not do search, that is local!
+ */
+function loadContacts () {
+  // Prepare JSON payload
+  const tmp = {
+    search: '',
+    userId
+  }
+
+  const jsonPayload = JSON.stringify(tmp)
+  const url = urlBase + '/SearchContacts.' + extension
+
+  // Handle API result
+  const xhr = new XMLHttpRequest()
+  xhr.open('POST', url, true)
+  xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8')
+  try {
+    xhr.onreadystatechange = function () {
+      if (this.readyState === 4 && this.status === 200) {
+        console.log('Loading contacts')
+        const jsonObject = JSON.parse(xhr.responseText)
+
+        let lContacts = ''
+        for (let i = 0; i < jsonObject.results.length; i++) {
+          lContacts += "<tr id='c-row-" + i + "'>"
+          lContacts += "<td id='cfn-" + i + "'>" + '<span>' + jsonObject.results[i].firstName + '</span></td>'
+          lContacts += "<td id='cln-" + i + "'>" + '<span>' + jsonObject.results[i].lastName + '</span></td>'
+          lContacts += "<td id='cpn-" + i + "'>" + '<span>' + jsonObject.results[i].email + '</span></td>'
+          lContacts += "<td id='cem-" + i + "'>" + '<span>' + jsonObject.results[i].number + '</span></td>'
+
+          // TODO: Add buttons into last column for edit/delete
+          lContacts += '<td></td>'
+          lContacts += '</tr>'
+        }
+
+        document.getElementById('contacts-table-body').innerHTML = lContacts
+      }
+    }
+    xhr.send(jsonPayload)
+  } catch (err) {
+    console.log(err.message)
+  }
+}
+
+function filterContacts () {
+  // Filter through contact table for names
+  const search = document.getElementById('contactSearch')
+  const searchIn = search.value.toUpperCase()
+  const table = document.getElementById('contacts')
+  const tr = table.getElementsByTagName('tr')
+
+  // Loop through each contact and see if it matches
+  for (let i = 0; i < tr.length; i++) {
+    const first = tr[i].getElementsByTagName('td')[0]
+    const last = tr[i].getElementsByTagName('td')[1]
+
+    if (first && last) {
+      const firstText = first.textContent || first.innerText
+      const lastText = last.textContent || last.innerText
+
+      tr[i].style.display = 'none'
+      if (firstText.toUpperCase().indexOf(searchIn) > -1) {
+        tr[i].style.display = ''
+      } else if (lastText.toUpperCase().indexOf(searchIn) > -1) {
+        tr[i].style.display = ''
+      }
+    }
+  }
+}
+
+function toggleAddForm () {
+  const addForm = document.getElementById('add-contact-form')
+  const contactsTable = document.getElementById('contacts')
+
+  if (addForm.style.display === 'none') {
+    addForm.style.display = 'block'
+    contactsTable.style.display = 'none'
+  } else {
+    addForm.style.display = 'none'
+    contactsTable.style.display = 'flex'
+  }
+}
