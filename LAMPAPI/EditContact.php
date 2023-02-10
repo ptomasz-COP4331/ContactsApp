@@ -19,8 +19,7 @@
 
 		$result = $stmt->get_result();
 
-
-		$row = $result->fetch_assoc()
+		$row = $result->fetch_assoc();
 		returnWithInfo( $row['Name'], $row['Email'], $row['Phone'], $row['DateCreated'] );
 
 		$stmt->close();
