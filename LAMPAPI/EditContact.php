@@ -47,6 +47,13 @@
 		echo $obj;
 	}
 	
+	function returnWithInfo( $Name, $Email, $Phone, $Date )
+	{
+		$retValue = '{"name": '. $Name .', "email": '. $Email.', "phone": '. $Phone .', "date": ' . $Date .' }';
+		sendResultInfoAsJson( $retValue );
+	}
+
+	
 	function returnWithError( $err )
 	{
 		$retValue = '{"error":"' . $err . '"}';
