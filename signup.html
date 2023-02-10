@@ -1,12 +1,11 @@
 <html>
 	<head>
 		<meta charset='UTF-8'/>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Contacts Login</title>
+		<title>Contacts Signup</title>
 		<link href="css/styles.css" rel="stylesheet">	
 		<link rel="preconnect" href="https://rsms.me/">
 		<link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-    <script type="text/javascript" src="js/code.js"></script>
+	<script type="text/javascript" src="js/code.js"></script>
 	</head>
 	<body>
 		<div class='container'>
@@ -21,23 +20,35 @@
 				</div>
 				<div class='section sign-up'>
 					<p>
-						Don't have an account? <a href="signup.html">Sign Up→</a>
+						Have an account? <a href="index.html">Sign In→</a>
 					</p>
+				</div>
+				<div class='section input-header'>
+					<p>First Name</p>
+				</div>
+				<div class='section firstname'>
+					<input type="text" id="firstName"/><br />
+				</div>
+				<div class='section input-header'>
+					<p>Last Name</p>
+				</div>
+				<div class='section lastname'>
+					<input type="text" id="lastName"/><br />
 				</div>
 				<div class='section input-header'>
 					<p>Username</p>
 				</div>
 				<div class='section username'>
-					<input type="text" id="loginName"/><br />
+					<input type="text" id="signupUsername"/><br />
 				</div>
 				<div class='section input-header'>
 					<p>Password</p>
 				</div>
 				<div class='section password'>
-					<input type="password" id="loginPassword"/><br />
+					<input type="password" id="signupPassword"/><br />
 				</div>
 				<div class='section sign-in'>
-					<button type="button" id="loginButton" class="enterButton" onclick="doLogin();">Sign In</button><br>
+					<button type="button" id="signupButton" class="enterButton" onclick="doSignup();">Sign Up</button><br>
 				</div>
 				<div class='section result'>
 					<span id="loginResult"></span>

@@ -4,6 +4,7 @@
 	
 	$searchResults = "";
 	$searchCount = 0;
+	
 
 	$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
 	if ($conn->connect_error) 
@@ -12,21 +13,23 @@
 	} 
 	else
 	{
-		$stmt = $conn->prepare("select Name from Colors where Name like ? and UserID=?");
-		$colorName = "%" . $inData["search"] . "%";
-		$stmt->bind_param("ss", $colorName, $inData["userId"]);
+		$stmt = $conn->prepare("select Name, Email, Phone, DateCreated from Contacts where  UserID=?");
+		$stmt->bind_param("s",  $inData["userId"]);
 		$stmt->execute();
 		
 		$result = $stmt->get_result();
 		
 		while($row = $result->fetch_assoc())
 		{
-			if( $searchCount > 0 )
-			{
-				$searchResults .= ",";
-			}
+			
+			
+			//$searchResults .= 'firstname: "' . $row["Name"] . '",';
+			//$searchResults .= 'lastname: "' . $row["Email"] . '",';
+			//$searchResults .= 'phone: "' . $row["Phone"] . '",';
+			//$searchResults .= 'email: "' . $row["DateCreated"] . '"';
 			$searchCount++;
-			$searchResults .= '"' . $row["Name"] . '"';
+
+			returnWithInfo( $row['Name'], $row['Email'], $row['Phone'], $row['DateCreated'] );
 		}
 		
 		if( $searchCount == 0 )
@@ -55,13 +58,14 @@
 	
 	function returnWithError( $err )
 	{
-		$retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $err . '"}';
+		$retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $id . '"}';
 		sendResultInfoAsJson( $retValue );
 	}
 	
-	function returnWithInfo( $searchResults )
+	function returnWithInfo( $Name, $Email, $Phone, $Date )
 	{
-		$retValue = '{"results":[' . $searchResults . '],"error":""}';
+		
+		$retValue = '["name": '. $Name .', "email": '. $Email.', "phone": '. $Phone .', "date": ' . $Date .' ]';
 		sendResultInfoAsJson( $retValue );
 	}
 	

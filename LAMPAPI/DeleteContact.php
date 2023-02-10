@@ -1,8 +1,6 @@
 <?php
 	$inData = getRequestInfo();
 
-	# $firstname = $inData["firstname"];
-	# $lastname = $inData["lastname"];
 	$ID = $inData["ID"];
 
 	$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
@@ -14,6 +12,7 @@
 	{
 		$stmt = $conn->prepare("Delete From Contacts from ID=?");
 		$stmt->bind_param("s", $ID);
+		
 		$stmt->execute();
 		$stmt->close();
 		$conn->close();
