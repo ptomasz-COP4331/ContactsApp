@@ -14,22 +14,14 @@
 	} 
 	else
 	{
-		$stmt = $conn->prepare("Edit Contact (UserID) VALUES(?)");
-		$stmt->bind_param("s", $userid);
+		$stmt = $conn->prepare("UPDATE Contacts SET 'Name'=$name 'Phone'=$phone 'Email'=$email WHERE UserID=$userid");
 		$stmt->execute();
 
 		$result = $stmt->get_result();
 
+
 		$row = $result->fetch_assoc()
-		
-		$row['Name'] = $name;
-		$row['Email'] = $email;
-		$row['Phone'] = $phone;
-		//$row['Name'] = $name;
-
-
 		returnWithInfo( $row['Name'], $row['Email'], $row['Phone'], $row['DateCreated'] );
-
 
 		$stmt->close();
 		$conn->close();
@@ -53,7 +45,6 @@
 		sendResultInfoAsJson( $retValue );
 	}
 
-	
 	function returnWithError( $err )
 	{
 		$retValue = '{"error":"' . $err . '"}';
