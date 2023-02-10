@@ -5,6 +5,11 @@ let userId = 0
 let firstName = ''
 let lastName = ''
 
+/**
+ * Login function
+ * If invalid login, then outputs error to text box on screen
+ * TODO: Hash passwords once everything is complete
+ */
 function doLogin () {
   userId = 0
   firstName = ''
@@ -12,12 +17,15 @@ function doLogin () {
 
   const login = document.getElementById('loginName').value
   const password = document.getElementById('loginPassword').value
-  // var hash = md5( password );
+  const hash = md5(password)
 
   document.getElementById('loginResult').innerHTML = ''
 
   const tmp = { login, password }
-  // var tmp = {login:login,password:hash};
+  // const tmp = {
+  //   login,
+  //   password: hash
+  // }
   const jsonPayload = JSON.stringify(tmp)
 
   const url = urlBase + '/Login.' + extension
@@ -27,7 +35,62 @@ function doLogin () {
   xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8')
   try {
     xhr.onreadystatechange = function () {
-      if (this.readyState == 4 && this.status == 200) {
+      if (this.readyState === 4 && this.status === 200) {
+        const jsonObject = JSON.parse(xhr.responseText)
+        userId = jsonObject.id
+
+        if (userId < 1) {
+          document.getElementById('loginResult').innerHTML = 'User/Password combination incorrect'
+          return
+        }
+
+        firstName = jsonObject.firstName
+        lastName = jsonObject.lastName
+
+        saveCookie()
+
+        window.location.href = 'contacts.html'
+      }
+    }
+    xhr.send(jsonPayload)
+  } catch (err) {
+    document.getElementById('loginResult').innerHTML = err.message
+  }
+}
+
+/**
+ * Signs up new user
+ */
+function doSignup () {
+  userId = 0
+  firstName = ''
+  lastName = ''
+
+  const first = document.getElementById('firstName').value
+  const last = document.getElementById('lastName').value
+  const login = document.getElementById('signupUsername').value
+  const password = document.getElementById('signupPassword').value
+  const hash = md5(password)
+
+  document.getElementById('loginResult').innerHTML = ''
+
+  // const tmp = { login, password }
+  const tmp = {
+    firstname: first,
+    lastname: last,
+    login,
+    password: hash
+  }
+  const jsonPayload = JSON.stringify(tmp)
+
+  const url = urlBase + '/AddUser.' + extension
+
+  const xhr = new XMLHttpRequest()
+  xhr.open('POST', url, true)
+  xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8')
+  try {
+    xhr.onreadystatechange = function () {
+      if (this.readyState === 4 && this.status === 200) {
         const jsonObject = JSON.parse(xhr.responseText)
         userId = jsonObject.id
 
@@ -64,11 +127,11 @@ function readCookie () {
   for (let i = 0; i < splits.length; i++) {
     const thisOne = splits[i].trim()
     const tokens = thisOne.split('=')
-    if (tokens[0] == 'firstName') {
+    if (tokens[0] === 'firstName') {
       firstName = tokens[1]
-    } else if (tokens[0] == 'lastName') {
+    } else if (tokens[0] === 'lastName') {
       lastName = tokens[1]
-    } else if (tokens[0] == 'userId') {
+    } else if (tokens[0] === 'userId') {
       userId = parseInt(tokens[1].trim())
     }
   }
@@ -111,7 +174,7 @@ function addContact () {
   xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8')
   try {
     xhr.onreadystatechange = function () {
-      if (this.readyState == 4 && this.status == 200) {
+      if (this.readyState === 4 && this.status === 200) {
         console.log('New contact added')
         loadContacts()
       }
@@ -126,7 +189,7 @@ function editContact () {
   const editContact = document.getElementById('editContactText').value
   document.getElementById('contactEditResult').innerHTML = ''
 
-  const tmp = { contact: editContact, userId, userID }
+  const tmp = { contact: editContact, userId }
   const jsonPayload = JSON.stringify(tmp)
 
   const url = urlBase + '/EditContact.' + extension
@@ -136,7 +199,7 @@ function editContact () {
   xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8')
   try {
     xhr.onreadystatechange = function () {
-      if (this.readyState == 4 && this.status == 200) {
+      if (this.readyState === 4 && this.status === 200) {
         document.getElementById('contactEditResult').innerHTML = 'Contact information has been updated'
       }
     }
@@ -150,7 +213,10 @@ function removeContact () {
   const deleteContact = document.getElementById('deleteContactText').value
   document.getElementById('deleteContactResult').innerHTML = ''
 
-  const tmp = { remove: deleteContact, userID, userID }
+  const tmp = {
+    remove: deleteContact,
+    userId
+  }
   const jsonPayload = JSON.stringify(tmp)
 
   const url = urlBase + '/DeleteContact.' + extension
@@ -160,7 +226,7 @@ function removeContact () {
   xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8')
   try {
     xhr.onreadystatechange = function () {
-      if (this.readyState == 4 && this.status == 200) {
+      if (this.readyState === 4 && this.status === 200) {
         // SOME WORK NEED TO BE DONE IN THIS SECTION TO DELETE
         // I also think there needs to be a confirmation text that ask if the object actually wants to be removed.
       }
@@ -244,6 +310,7 @@ function filterContacts () {
   }
 }
 
+// eslint-disable-next-line no-unused-vars
 function toggleAddForm () {
   const addForm = document.getElementById('add-contact-form')
   const contactsTable = document.getElementById('contacts')
