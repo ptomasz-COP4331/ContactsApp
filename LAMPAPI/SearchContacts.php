@@ -26,9 +26,9 @@
 			searchCount++;
 			// $searchResults .= '{"Name" : "' . $row["Name"] . '", "Email" : "' . $row["Email"]. '", "Phone" : "' . $row["Phone"]. '"}';
 			// $searchResults .= 'firstname: "' . $row["Name"] . '",';
-			$searchResults .= '"Name": "' . $row['Name'] . '",';
+			$searchResults .= '{"Name": "' . $row['Name'] . '",';
 			$searchResults .= '"Phone": "' . $row['Email'] . '",';
-			$searchResults .= '"Email": "' . $row['Phone'] . '"';
+			$searchResults .= '"Email": "' . $row['Phone'] . '"}';
 			$searchCount++;
 
 			// returnWithInfo( $row['Name'], $row['Email'], $row['Phone'], $row['DateCreated'] );
