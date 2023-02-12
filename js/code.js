@@ -219,9 +219,9 @@ function editContact () {
   }
 }
 
-function removeContact () {
-  const deleteContact = document.getElementById('deleteContactText').value
-  document.getElementById('deleteContactResult').innerHTML = ''
+function deleteRow (i) {
+  const name = document.getElementsById('cna-' + i).innerText
+  console.log(name)
 
   const tmp = {
     remove: deleteContact,
