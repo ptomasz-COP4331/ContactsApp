@@ -229,7 +229,11 @@ function editRow (i) {
   const cpn = document.getElementById(`cpn-${i}`).innerText
   const cem = document.getElementById(`cem-${i}`).innerText
 
+  console.log('i: ' + i)
+
   const cnaText = cna.innerText
+  console.log(cnaText)
+  console.log(cna.innerHTML)
   const cpnText = cpn.innerText
   const cemText = cem.innerText
 
