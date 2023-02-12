@@ -232,7 +232,7 @@ function deleteRow (i) {
   console.log(name)
 
   const tmp = {
-    id: i
+    id: contactIDs[i]
   }
 
   const jsonPayload = JSON.stringify(tmp)
