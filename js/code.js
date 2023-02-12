@@ -255,6 +255,7 @@ function saveRow (i) {
   const cem = cemi.value
   const cid = contactIDs[i]
 
+  console.log(cna + ' ' + cpn + ' ' + cem)
   // document.getElementById(`cna-${i}`).innerHTML = `<span>${cna}</span>`
   // document.getElementById(`cpn-${i}`).innerHTML = `<span>${cpn}</span>`
   // document.getElementById(`cem-${i}`).innerHTML = `<span>${cem}</span>`
