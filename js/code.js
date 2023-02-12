@@ -183,7 +183,7 @@ function addContact () {
     xhr.onreadystatechange = function () {
       if (this.readyState === 4 && this.status === 200) {
         console.log('New contact added')
-        loadContacts()
+        // loadContacts()
       }
     }
     xhr.send(jsonPayload)
