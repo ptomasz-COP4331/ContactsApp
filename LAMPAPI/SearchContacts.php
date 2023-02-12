@@ -24,11 +24,11 @@
 				$searchResults .= ",";
 			}
 			searchCount++;
-			$searchResults .= '{"Name" : "' . $row["Name"] . '", "Email" : "' . $row["Email"]. '", "Phone" : "' . $row["Phone"]. '"}';
+			// $searchResults .= '{"Name" : "' . $row["Name"] . '", "Email" : "' . $row["Email"]. '", "Phone" : "' . $row["Phone"]. '"}';
 			// $searchResults .= 'firstname: "' . $row["Name"] . '",';
-			// $searchResults .= 'lastname: "' . $row["Email"] . '",';
-			// $searchResults .= 'phone: "' . $row["Phone"] . '",';
-			// $searchResults .= 'email: "' . $row["DateCreated"] . '"';
+			$searchResults .= '"Name": "' . $row['Name'] . '",';
+			$searchResults .= '"Phone": "' . $row['Email'] . '",';
+			$searchResults .= '"Email": "' . $row['Phone'] . '"';
 			$searchCount++;
 
 			// returnWithInfo( $row['Name'], $row['Email'], $row['Phone'], $row['DateCreated'] );
@@ -36,11 +36,11 @@
 		
 		if( $searchCount == 0 )
 		{
-			returnWithError( "No Records Found" );
+			returnWithError("No Records Found");
 		}
 		else
 		{
-			returnWithInfo( $searchResults );
+			returnJsonArray($searchResults);
 		}
 		
 		$stmt->close();
