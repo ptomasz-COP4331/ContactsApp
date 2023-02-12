@@ -13,8 +13,8 @@
 	} 
 	else
 	{
-		$stmt = $conn->prepare("SELECT * FROM Users WHERE Login = :login");
-		$stmt->bind_param(':login', $login);
+		$stmt = $conn->prepare("SELECT * FROM Users WHERE Login=?");
+		$stmt->bind_param("s", $login);
 		$stmt->execute();
 		$result = $stmt->fetch();
 
