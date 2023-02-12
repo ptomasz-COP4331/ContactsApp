@@ -5,7 +5,7 @@ let userId = 0
 let firstName = ''
 let lastName = ''
 
-let contactIDs = []
+const contactIDs = []
 
 /**
  * Login function
@@ -245,6 +245,45 @@ function editRow (i) {
 function saveRow (i) {
   document.getElementById(`sb-${i}`).style.display = 'none'
   document.getElementById(`eb-${i}`).style.display = 'inline-block'
+
+  const cnai = document.getElementById(`cna-e-${i}`)
+  const cpni = document.getElementById(`cpn-e-${i}`)
+  const cemi = document.getElementById(`cem-e-${i}`)
+
+  const cna = cnai.value
+  const cpn = cpni.value
+  const cem = cemi.value
+  const cid = contactIDs[i]
+
+  // document.getElementById(`cna-${i}`).innerHTML = `<span>${cna}</span>`
+  // document.getElementById(`cpn-${i}`).innerHTML = `<span>${cpn}</span>`
+  // document.getElementById(`cem-${i}`).innerHTML = `<span>${cem}</span>`
+
+  const tmp = {
+    cid,
+    name: cna,
+    phone: cpn,
+    email: cem
+  }
+
+  const jsonPayload = JSON.stringify(tmp)
+
+  const url = urlBase + '/EditContact.' + extension
+
+  const xhr = new XMLHttpRequest()
+  xhr.open('POST', url, true)
+  xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8')
+  try {
+    xhr.onreadystatechange = function () {
+      if (this.readyState === 4 && this.status === 200) {
+        console.log('Updated contacts!')
+        loadContacts()
+      }
+    }
+    xhr.send(jsonPayload)
+  } catch (err) {
+    console.log(err.message)
+  }
 }
 
 function deleteRow (i) {
@@ -254,8 +293,6 @@ function deleteRow (i) {
   if (!con) {
     return
   }
-
-  console.log(name)
 
   const tmp = {
     id: contactIDs[i]
