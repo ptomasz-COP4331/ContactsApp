@@ -33,15 +33,7 @@
 
 			// returnWithInfo( $row['Name'], $row['Email'], $row['Phone'], $row['DateCreated'] );
 		}
-		
-		if( $searchCount == 0 )
-		{
-			returnWithError( "No Records Found" );
-		}
-		else
-		{
-			returnArray( $searchResults );
-		}
+    returnArray( $searchResults );
 		
 		$stmt->close();
 		$conn->close();
