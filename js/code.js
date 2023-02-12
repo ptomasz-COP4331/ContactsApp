@@ -281,7 +281,7 @@ function loadContacts () {
           lContacts += "<td id='cem-" + i + "'>" + '<span>' + jsonObject.results[i].phone + '</span></td>'
 
           // TODO: Add buttons into last column for edit/delete
-          lContacts += '<td></td>'
+          lContacts += '<td><button>Edit</button><button>Save</button><button>Delete</button></td>'
           lContacts += '</tr>'
         }
 
@@ -303,17 +303,15 @@ function filterContacts () {
 
   // Loop through each contact and see if it matches
   for (let i = 0; i < tr.length; i++) {
-    const first = tr[i].getElementsByTagName('td')[0]
-    const last = tr[i].getElementsByTagName('td')[1]
+    const name = tr[i].getElementsByTagName('td')[0]
 
-    if (first && last) {
-      const firstText = first.textContent || first.innerText
-      const lastText = last.textContent || last.innerText
+    if (name) {
+      const nameText = name.textContent || name.innerText
 
       tr[i].style.display = 'none'
-      if (firstText.toUpperCase().indexOf(searchIn) > -1) {
+      if (nameText.toUpperCase().indexOf(searchIn) > -1) {
         tr[i].style.display = ''
-      } else if (lastText.toUpperCase().indexOf(searchIn) > -1) {
+      } else if (nameText.toUpperCase().indexOf(searchIn) > -1) {
         tr[i].style.display = ''
       }
     }
