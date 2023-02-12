@@ -5,6 +5,8 @@ let userId = 0
 let firstName = ''
 let lastName = ''
 
+let contactIDs = []
+
 /**
  * Login function
  * If invalid login, then outputs error to text box on screen
@@ -282,6 +284,7 @@ function loadContacts () {
 
         let lContacts = ''
         for (let i = 0; i < jsonObject.results.length; i++) {
+          contactIDs[i] = jsonObject.results[i].ID
           lContacts += "<tr id='c-row-" + i + "'>"
           lContacts += "<td id='cna-" + i + "'>" + '<span>' + jsonObject.results[i].name + '</span></td>'
           lContacts += "<td id='cpn-" + i + "'>" + '<span>' + jsonObject.results[i].email + '</span></td>'

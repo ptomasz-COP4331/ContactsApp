@@ -24,8 +24,9 @@
 			if ($searchCount > 0) {
         $searchResults .= ', ';
       }
-			
-			$searchResults .= '{"name": "' . $row["Name"] . '", ';
+
+      $searchResults .= '{"id": "' . $row["ID"] . '", ';
+			$searchResults .= '"name": "' . $row["Name"] . '", ';
 			$searchResults .= '"phone": "' . $row["Phone"] . '", ';
 			$searchResults .= '"email": "' . $row["Email"] . '"}';
 			$searchCount++;
