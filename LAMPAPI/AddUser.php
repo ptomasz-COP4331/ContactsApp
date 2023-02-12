@@ -28,12 +28,13 @@
 			$stmt = $conn->prepare("INSERT into Users (FirstName,LastName,Login,Password) VALUES(?,?,?,?)");
 			$stmt->bind_param("ssss", $firstname, $lastname, $login, $password);
 			$stmt->execute();
+			$res = $stmt->fetch();
 
 			$stmt->close();
 			$conn->close();
 
 			http_response_code(200);
-			returnWithResult("User added!");		
+			returnWithInfo( $res['firstName'], $res['lastName'], $res['ID'] );
 		}
 		
 	}
@@ -49,10 +50,9 @@
 		echo $obj;
 	}
 
-	function returnWithResult( $msg )
+	function returnWithInfo( $firstName, $lastName, $id )
 	{
-		$retValue = '{"message":"' . $msg . '"}';
+		$retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","error":""}';
 		sendResultInfoAsJson( $retValue );
 	}
-
 ?>
