@@ -13,7 +13,7 @@
 	} 
 	else
 	{
-		$stmt = $conn->prepare("select Name, Email, Phone, DateCreated from Contacts where  UserID=?");
+		$stmt = $conn->prepare("SELECT * FROM Contacts WHERE UserID=?");
 		$stmt->bind_param("s",  $inData["userId"]);
 		$stmt->execute();
 		
@@ -65,7 +65,7 @@
 	function returnWithInfo( $Name, $Email, $Phone, $Date )
 	{
 		
-		$retValue = '["name": '. $Name .', "email": '. $Email.', "phone": '. $Phone .', "date": ' . $Date .' ]';
+		$retValue = '{"name": '. $Name .', "email": '. $Email.', "phone": '. $Phone .', "date": ' . $Date .' }';
 		sendResultInfoAsJson( $retValue );
 	}
 	
