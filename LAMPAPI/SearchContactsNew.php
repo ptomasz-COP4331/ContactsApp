@@ -28,7 +28,7 @@
 			// $searchResults .= 'firstname: "' . $row["Name"] . '",';
 			$searchResults .= '{"name": ' . $row['Name'] . ', '
 			$searchResults .= '"phone": ' . $row['Phone'] . ', '
-			$searchResults .= '"email": ' . $row['Email'] . ',}'
+			$searchResults .= '"email": ' . $row['Email'] . '}'
 
 			// $searchResults .= ': "' . $row["Email"] . '",';
 			// $searchResults .= 'phone: "' . $row["Phone"] . '",';
