@@ -21,15 +21,17 @@
 		
 		while($row = $result->fetch_assoc())
 		{
+			// if ($searchCount > 0) {
+      //   $searchResults .= ', ';
+      // }
 			
-			
-			//$searchResults .= 'firstname: "' . $row["Name"] . '",';
-			//$searchResults .= 'lastname: "' . $row["Email"] . '",';
-			//$searchResults .= 'phone: "' . $row["Phone"] . '",';
-			//$searchResults .= 'email: "' . $row["DateCreated"] . '"';
+			$searchResults .= '{"name": "' . $row["Name"] . '",';
+			$searchResults .= '"phone": "' . $row["Phone"] . '",';
+			$searchResults .= '"email": "' . $row["DateCreated"] . '"}';
 			$searchCount++;
 
-			returnWithInfo( $row['Name'], $row['Email'], $row['Phone'], $row['DateCreated'] );
+      sendResultInfoAsJson($searchResults)
+			// returnWithInfo( $row['Name'], $row['Email'], $row['Phone'], $row['DateCreated'] );
 		}
 		
 		if( $searchCount == 0 )
