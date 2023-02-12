@@ -21,13 +21,16 @@
 		
 		while($row = $result->fetch_assoc())
 		{
-			//$searchResults .= 'firstname: "' . $row["Name"] . '",';
-			//$searchResults .= 'lastname: "' . $row["Email"] . '",';
-			//$searchResults .= 'phone: "' . $row["Phone"] . '",';
-			//$searchResults .= 'email: "' . $row["DateCreated"] . '"';
+			if ($searchCount > 0) {
+				$searchResults .= ", "
+			}
+			// $searchResults .= 'firstname: "' . $row["Name"] . '",';
+			$searchResults .= '{"name": ' . $row["Name"] . ',';
+			$searchResults .= '"email": ' . $row["Email"] . ',';
+			$searchResults .= '"phone": ' . $row["Phone"] . '}';
 			$searchCount++;
 
-			returnWithInfo( $row['Name'], $row['Email'], $row['Phone'], $row['DateCreated'] );
+			// returnWithInfo( $row['Name'], $row['Email'], $row['Phone'], $row['DateCreated'] );
 		}
 		
 		if( $searchCount == 0 )
@@ -36,7 +39,7 @@
 		}
 		else
 		{
-			returnWithInfo( $searchResults );
+			returnJsonArray( $searchResults );
 		}
 		
 		$stmt->close();
@@ -68,7 +71,7 @@
 	}
 	
 	function returnJsonArray ($obj) {
-		$retValue = '{"results": [' . $obj . '], "error": ""}';
+		$retValue = '{"results": [' . $obj . '], "error": "" }';
 		sendResultInfoAsJson($retValue);
 	}
 ?>
