@@ -222,11 +222,25 @@ function editContact () {
 }
 
 function editRow (i) {
-  // document.getElementById('save')
+  document.getElementById(`sb-${i}`).style.display = 'inline-block'
+  document.getElementById(`eb-${i}`).style.display = 'none'
+
+  const cna = document.getElementById(`cna-${i}`).innerText
+  const cpn = document.getElementById(`cpn-${i}`).innerText
+  const cem = document.getElementById(`cem-${i}`).innerText
+
+  const cnaText = cna.innerText
+  const cpnText = cpn.innerText
+  const cemText = cem.innerText
+
+  cna.innerHTML = `<input id='cna-e-${i}' type='text' value='${cnaText}'>`
+  cpn.innerHTML = `<input id='cpn-e-${i}' type='text' value='${cpnText}'>`
+  cem.innerHTML = `<input id='cem-e-${i}' type='text' value='${cemText}'>`
 }
 
 function saveRow (i) {
-
+  document.getElementById(`sb-${i}`).style.display = 'none'
+  document.getElementById(`eb-${i}`).style.display = 'inline-block'
 }
 
 function deleteRow (i) {
