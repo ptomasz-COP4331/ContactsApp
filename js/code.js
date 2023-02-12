@@ -220,7 +220,7 @@ function editContact () {
 }
 
 function deleteRow (i) {
-  const name = document.getElementsById('cna-' + i).innerText
+  const name = document.getElementById('cna-' + i).innerText
   console.log(name)
 
   const tmp = {
