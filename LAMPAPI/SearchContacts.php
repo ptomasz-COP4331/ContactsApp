@@ -36,10 +36,10 @@
 		{
 			returnWithError( "No Records Found" );
 		}
-		else
-		{
-			returnWithInfo( $searchResults );
-		}
+		// else
+		// {
+		// 	returnWithInfo( $searchResults );
+		// }
 		
 		$stmt->close();
 		$conn->close();
