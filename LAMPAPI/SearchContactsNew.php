@@ -22,7 +22,7 @@
 		while($row = $result->fetch_assoc())
 		{
 			if ($searchCount > 0) {
-				$searchCount .= ", "
+				$searchResults .= ", "
 			}
 			
 			// $searchResults .= 'firstname: "' . $row["Name"] . '",';
