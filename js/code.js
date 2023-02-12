@@ -255,7 +255,6 @@ function removeContact () {
 function loadContacts () {
   // Prepare JSON payload
   const tmp = {
-    search: '',
     userId
   }
 
@@ -270,9 +269,10 @@ function loadContacts () {
     xhr.onreadystatechange = function () {
       if (this.readyState === 4 && this.status === 200) {
         console.log('Loading contacts')
+        console.log(xhr.responseText)
         const jsonObject = JSON.parse(xhr.responseText)
         console.log(jsonObject)
-        
+
         let lContacts = ''
         for (let i = 0; i < jsonObject.results.length; i++) {
           lContacts += "<tr id='c-row-" + i + "'>"
