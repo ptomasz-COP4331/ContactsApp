@@ -13,7 +13,18 @@
 	} 
 	else
 	{
-		try {
+		$stmt = $conn->prepare("SELECT * FROM Users WHERE Login = :login");
+		$stmt->bind_param(':login', $login);
+		$stmt->execute();
+		$result = $stmt->fetch();
+
+		if ($result) {
+			$stmt->close();
+			$conn->close();
+
+			http_response_code(409);
+			returnWithError("Username Conflict!");		
+		} else {
 			$stmt = $conn->prepare("INSERT into Users (FirstName,LastName,Login,Password) VALUES(?,?,?,?)");
 			$stmt->bind_param("ssss", $firstname, $lastname, $login, $password);
 			$stmt->execute();
@@ -23,12 +34,8 @@
 
 			http_response_code(200);
 			returnWithError("User added!");		
-		} catch (PDOException $e) {
-			if ($e->getCode() == 23000) {
-				http_response_code(409);
-				returnWithError("Username Taken");
-			}
 		}
+		
 	}
 
 	function getRequestInfo()
