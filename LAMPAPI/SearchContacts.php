@@ -5,6 +5,7 @@
 	$searchResults = "";
 	$searchCount = 0;
 	
+
 	$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
 	if ($conn->connect_error) 
 	{
@@ -20,15 +21,12 @@
 		
 		while($row = $result->fetch_assoc())
 		{
-			if ($searchCount > 0) {
-				$searchResults .= ",";
-			}
-			searchCount++;
-			// $searchResults .= '{"Name" : "' . $row["Name"] . '", "Email" : "' . $row["Email"]. '", "Phone" : "' . $row["Phone"]. '"}';
-			// $searchResults .= 'firstname: "' . $row["Name"] . '",';
-			// $searchResults .= '{"Name": "' . $row['Name'] . '",';
-			// $searchResults .= '"Phone": "' . $row['Email'] . '",';
-			// $searchResults .= '"Email": "' . $row['Phone'] . '"}';
+			
+			
+			//$searchResults .= 'firstname: "' . $row["Name"] . '",';
+			//$searchResults .= 'lastname: "' . $row["Email"] . '",';
+			//$searchResults .= 'phone: "' . $row["Phone"] . '",';
+			//$searchResults .= 'email: "' . $row["DateCreated"] . '"';
 			$searchCount++;
 
 			returnWithInfo( $row['Name'], $row['Email'], $row['Phone'], $row['DateCreated'] );
@@ -36,12 +34,12 @@
 		
 		if( $searchCount == 0 )
 		{
-			returnWithError("No Records Found");
+			returnWithError( "No Records Found" );
 		}
-		// else
-		// {
-		// 	returnJsonArray($searchResults);
-		// }
+		else
+		{
+			returnWithInfo( $searchResults );
+		}
 		
 		$stmt->close();
 		$conn->close();
@@ -71,8 +69,4 @@
 		sendResultInfoAsJson( $retValue );
 	}
 	
-	function returnJsonArray ($obj) {
-		$retValue = '{"results": [' . $obj . '], "error": ""}';
-		sendResultInfoAsJson($retValue);
-	}
 ?>
