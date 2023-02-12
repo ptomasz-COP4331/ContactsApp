@@ -25,7 +25,7 @@
         $searchResults .= ', ';
       }
 			
-			$searchResults = '{"name": "' . $row["Name"] . '", ';
+			$searchResults .= '{"name": "' . $row["Name"] . '", ';
 			$searchResults .= '"phone": "' . $row["Phone"] . '", ';
 			$searchResults .= '"email": "' . $row["DateCreated"] . '"}';
 			$searchCount++;
