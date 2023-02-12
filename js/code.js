@@ -221,6 +221,14 @@ function editContact () {
   }
 }
 
+function editRow (i) {
+  // document.getElementById('save')
+}
+
+function saveRow (i) {
+
+}
+
 function deleteRow (i) {
   const name = document.getElementById('cna-' + i).innerText
   const con = confirm(`Would you like to delete ${name} from your contacts?`)
@@ -290,7 +298,7 @@ function loadContacts () {
           lContacts += "<td id='cem-" + i + "'>" + '<span>' + jsonObject.results[i].phone + '</span></td>'
 
           // TODO: Add buttons into last column for edit/delete
-          lContacts += `<td><button onclick="editRow(${i})"><span class="material-symbols-rounded">edit</span><button onclick="saveRow(${i})"><span class="material-symbols-rounded">save</span></button><button onclick="deleteRow(${i})"><span class="material-symbols-rounded">delete</span></button></td>`
+          lContacts += `<td><button id='eb-${i}' onclick="editRow(${i})"><span class="material-symbols-rounded">edit</span><button id='sb${i}' onclick="saveRow(${i})"><span class="material-symbols-rounded">save</span></button><button id='db${i}' onclick="deleteRow(${i})"><span class="material-symbols-rounded">delete</span></button></td>`
           lContacts += '</tr>'
         }
 
