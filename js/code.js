@@ -353,8 +353,8 @@ function loadContacts () {
           contactIDs[i] = jsonObject.results[i].id
           lContacts += "<tr id='c-row-" + i + "'>"
           lContacts += "<td id='cna-" + i + "'>" + '<span>' + jsonObject.results[i].name + '</span></td>'
-          lContacts += "<td id='cpn-" + i + "'>" + '<span>' + jsonObject.results[i].email + '</span></td>'
-          lContacts += "<td id='cem-" + i + "'>" + '<span>' + jsonObject.results[i].phone + '</span></td>'
+          lContacts += "<td id='cem-" + i + "'>" + '<span>' + jsonObject.results[i].email + '</span></td>'
+          lContacts += "<td id='cpn-" + i + "'>" + '<span>' + jsonObject.results[i].phone + '</span></td>'
 
           // TODO: Add buttons into last column for edit/delete
           lContacts += `<td><button id='eb-${i}' onclick="editRow(${i})"><span class="material-symbols-rounded">edit</span><button id='sb-${i}' onclick="saveRow(${i})" style="display: none"><span class="material-symbols-rounded">save</span></button><button id='db-${i}' onclick="deleteRow(${i})"><span class="material-symbols-rounded">delete</span></button></td>`
