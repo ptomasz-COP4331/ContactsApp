@@ -232,8 +232,7 @@ function deleteRow (i) {
   console.log(name)
 
   const tmp = {
-    name,
-    userId
+    id: i
   }
 
   const jsonPayload = JSON.stringify(tmp)
@@ -284,7 +283,7 @@ function loadContacts () {
 
         let lContacts = ''
         for (let i = 0; i < jsonObject.results.length; i++) {
-          contactIDs[i] = jsonObject.results[i].ID
+          contactIDs[i] = jsonObject.results[i].id
           lContacts += "<tr id='c-row-" + i + "'>"
           lContacts += "<td id='cna-" + i + "'>" + '<span>' + jsonObject.results[i].name + '</span></td>'
           lContacts += "<td id='cpn-" + i + "'>" + '<span>' + jsonObject.results[i].email + '</span></td>'
