@@ -20,28 +20,28 @@
 		
 		while($row = $result->fetch_assoc())
 		{
-			// if ($searchCount > 0) {
-			// 	$searchResults .= ",";
-			// }
-			// searchCount++;
-			// $searchResults .= '{"Name" : "' . $row["Name"] . '", "Email" : "' . $row["Email"]. '", "Phone" : "' . $row["Phone"]. '"}';
-			//$searchResults .= 'firstname: "' . $row["Name"] . '",';
-			//$searchResults .= 'lastname: "' . $row["Email"] . '",';
-			//$searchResults .= 'phone: "' . $row["Phone"] . '",';
-			//$searchResults .= 'email: "' . $row["DateCreated"] . '"';
+			if ($searchCount > 0) {
+				$searchResults .= ",";
+			}
+			searchCount++;
+			$searchResults .= '{"Name" : "' . $row["Name"] . '", "Email" : "' . $row["Email"]. '", "Phone" : "' . $row["Phone"]. '"}';
+			// $searchResults .= 'firstname: "' . $row["Name"] . '",';
+			// $searchResults .= 'lastname: "' . $row["Email"] . '",';
+			// $searchResults .= 'phone: "' . $row["Phone"] . '",';
+			// $searchResults .= 'email: "' . $row["DateCreated"] . '"';
 			$searchCount++;
 
-			returnWithInfo( $row['Name'], $row['Email'], $row['Phone'], $row['DateCreated'] );
+			// returnWithInfo( $row['Name'], $row['Email'], $row['Phone'], $row['DateCreated'] );
 		}
 		
 		if( $searchCount == 0 )
 		{
 			returnWithError( "No Records Found" );
 		}
-		// else
-		// {
-		// 	returnWithInfo( $searchResults );
-		// }
+		else
+		{
+			returnWithInfo( $searchResults );
+		}
 		
 		$stmt->close();
 		$conn->close();
@@ -71,4 +71,8 @@
 		sendResultInfoAsJson( $retValue );
 	}
 	
+	function returnJsonArray ($obj) {
+		$retValue = '{"results": [' . $obj . '], "error": ""}';
+		sendResultInfoAsJson($retValue);
+	}
 ?>
