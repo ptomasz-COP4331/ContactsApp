@@ -221,12 +221,19 @@ function editContact () {
 
 function deleteRow (i) {
   const name = document.getElementById('cna-' + i).innerText
+  const con = confirm(`Would you like to delete ${name} from your contacts?`)
+
+  if (!con) {
+    return
+  }
+
   console.log(name)
 
   const tmp = {
-    remove: deleteContact,
+    name,
     userId
   }
+
   const jsonPayload = JSON.stringify(tmp)
 
   const url = urlBase + '/DeleteContact.' + extension
@@ -237,13 +244,13 @@ function deleteRow (i) {
   try {
     xhr.onreadystatechange = function () {
       if (this.readyState === 4 && this.status === 200) {
-        // SOME WORK NEED TO BE DONE IN THIS SECTION TO DELETE
-        // I also think there needs to be a confirmation text that ask if the object actually wants to be removed.
+        console.log('Deleted contact!')
+        loadContacts()
       }
     }
     xhr.send(jsonPayload)
   } catch (err) {
-    document.getElementById('contactDeleteResult').innerHTML = err.message
+    console.log(err.message)
   }
 }
 
