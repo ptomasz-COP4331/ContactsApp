@@ -13,7 +13,7 @@
 	} 
 	else
 	{
-		$stmt = $conn->prepare("select Name, Email, Phone, DateCreated from Contacts where  UserID=?");
+		$stmt = $conn->prepare("SELECT * FROM Contacts WHERE UserID=?");
 		$stmt->bind_param("s",  $inData["userId"]);
 		$stmt->execute();
 		
@@ -21,26 +21,25 @@
 		
 		while($row = $result->fetch_assoc())
 		{
-			if ($searchCount > 0) {
-				$searchResults .= ", "
-			}
-			// $searchResults .= 'firstname: "' . $row["Name"] . '",';
-			$searchResults .= '{"name": ' . $row["Name"] . ',';
-			$searchResults .= '"email": ' . $row["Email"] . ',';
-			$searchResults .= '"phone": ' . $row["Phone"] . '}';
+			
+			
+			//$searchResults .= 'firstname: "' . $row["Name"] . '",';
+			//$searchResults .= 'lastname: "' . $row["Email"] . '",';
+			//$searchResults .= 'phone: "' . $row["Phone"] . '",';
+			//$searchResults .= 'email: "' . $row["DateCreated"] . '"';
 			$searchCount++;
 
-			// returnWithInfo( $row['Name'], $row['Email'], $row['Phone'], $row['DateCreated'] );
+			returnWithInfo( $row['Name'], $row['Email'], $row['Phone'], $row['DateCreated'] );
 		}
 		
 		if( $searchCount == 0 )
 		{
 			returnWithError( "No Records Found" );
 		}
-		else
-		{
-			returnJsonArray( $searchResults );
-		}
+		// else
+		// {
+		// 	returnWithInfo( $searchResults );
+		// }
 		
 		$stmt->close();
 		$conn->close();
@@ -66,12 +65,8 @@
 	function returnWithInfo( $Name, $Email, $Phone, $Date )
 	{
 		
-		$retValue = '{"name": '. $Name .', "email": '. $Email.', "phone": '. $Phone .', "date": ' . $Date .' }';
+		$retValue = '{"name": '. $Name .', "email": '. $Email.', "phone": '. $Phone .', "date": ' . $Date . ' }';
 		sendResultInfoAsJson( $retValue );
 	}
 	
-	function returnJsonArray ($obj) {
-		$retValue = '{"results": [' . $obj . '], "error": "" }';
-		sendResultInfoAsJson($retValue);
-	}
 ?>
