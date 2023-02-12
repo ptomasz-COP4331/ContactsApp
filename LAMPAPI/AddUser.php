@@ -29,7 +29,7 @@
 			$stmt->bind_param("ssss", $firstname, $lastname, $login, $password);
 			$stmt->execute();
 			$res = $stmt->get_result();
-			$row = $res->fetch_assoc()  
+			$row = $res->fetch_assoc();
 
 			$stmt->close();
 			$conn->close();
