@@ -225,9 +225,9 @@ function editRow (i) {
   document.getElementById(`sb-${i}`).style.display = 'inline-block'
   document.getElementById(`eb-${i}`).style.display = 'none'
 
-  const cna = document.getElementById(`cna-${i}`).innerText
-  const cpn = document.getElementById(`cpn-${i}`).innerText
-  const cem = document.getElementById(`cem-${i}`).innerText
+  const cna = document.getElementById(`cna-${i}`)
+  const cpn = document.getElementById(`cpn-${i}`)
+  const cem = document.getElementById(`cem-${i}`)
 
   console.log('i: ' + i)
 
