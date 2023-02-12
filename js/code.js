@@ -168,7 +168,7 @@ function addContact () {
   const tmp = {
     userid: userId,
     name: cna,
-    phone: fpn,
+    phone: encodeURI(fpn),
     email: cem
   }
 
