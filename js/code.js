@@ -17,7 +17,7 @@ function doLogin () {
 
   const login = document.getElementById('loginName').value
   const password = document.getElementById('loginPassword').value
-  const hash = md5(password)
+  // const hash = md5(password)
 
   document.getElementById('loginResult').innerHTML = ''
 
@@ -35,7 +35,7 @@ function doLogin () {
   xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8')
   try {
     xhr.onreadystatechange = function () {
-      if (this.readyState === 4 && this.status === 200) {
+      if (this.readyState == 4 && this.status == 200) {
         const jsonObject = JSON.parse(xhr.responseText)
         userId = jsonObject.id
 
@@ -70,7 +70,7 @@ function doSignup () {
   const last = document.getElementById('lastName').value
   const login = document.getElementById('signupUsername').value
   const password = document.getElementById('signupPassword').value
-  const hash = md5(password)
+  // const hash = md5(password)
 
   document.getElementById('signupResult').innerHTML = ''
 
@@ -79,7 +79,7 @@ function doSignup () {
     firstname: first,
     lastname: last,
     login,
-    password: hash
+    password
   }
   const jsonPayload = JSON.stringify(tmp)
 
