@@ -18,7 +18,7 @@
 		$stmt->execute();
 		$stmt->close();
 		$conn->close();
-		returnWithError("");
+		returnWithError("Added User");
 	}
 
 	function getRequestInfo()
