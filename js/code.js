@@ -147,6 +147,7 @@ function readCookie () {
     window.location.href = 'index.html'
   } else {
     document.getElementById('userName').innerHTML = firstName + ' ' + lastName
+    loadContacts()
   }
 }
 
@@ -184,6 +185,8 @@ function addContact () {
       if (this.readyState === 4 && this.status === 200) {
         console.log('New contact added')
         loadContacts()
+      } else {
+        console.log('Not adding contact')
       }
     }
     xhr.send(jsonPayload)
@@ -268,7 +271,8 @@ function loadContacts () {
       if (this.readyState === 4 && this.status === 200) {
         console.log('Loading contacts')
         const jsonObject = JSON.parse(xhr.responseText)
-
+        console.log(jsonObject)
+        
         let lContacts = ''
         for (let i = 0; i < jsonObject.results.length; i++) {
           lContacts += "<tr id='c-row-" + i + "'>"
