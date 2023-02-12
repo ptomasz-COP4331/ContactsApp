@@ -21,14 +21,14 @@
 		
 		while($row = $result->fetch_assoc())
 		{
-			if ($searchCount > 0) {
-				$searchResults .= ", "
-			}
+			// if ($searchCount > 0) {
+			// 	$searchResults .= ", "
+			// }
 			
 			// $searchResults .= 'firstname: "' . $row["Name"] . '",';
-			$searchResults .= '{"name": ' . $row['Name'] . ', '
-			$searchResults .= '"phone": ' . $row['Phone'] . ', '
-			$searchResults .= '"email": ' . $row['Email'] . '}'
+			// $searchResults .= '{"name": ' . $row['Name'] . ', '
+			// $searchResults .= '"phone": ' . $row['Phone'] . ', '
+			// $searchResults .= '"email": ' . $row['Email'] . '}'
 
 			// $searchResults .= ': "' . $row["Email"] . '",';
 			// $searchResults .= 'phone: "' . $row["Phone"] . '",';
@@ -44,7 +44,8 @@
 		}
 		else
 		{
-			returnArray( $searchResults );
+			returnWithError("Records Found")
+			// returnArray( $searchResults );
 		}
 		
 		$stmt->close();
