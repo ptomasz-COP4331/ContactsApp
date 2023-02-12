@@ -160,16 +160,15 @@ function doLogout () {
 }
 
 function addContact () {
-  const cfn = document.getElementById('contact-first-name').value
-  const cln = document.getElementById('contact-last-name').value
+  const cna = document.getElementById('contact-name').value
+  // const cln = document.getElementById('contact-last-name').value
   const fpn = document.getElementById('contact-pnumber').value
   const cem = document.getElementById('contact-email').value
 
   const tmp = {
-    userId,
-    firstName: cfn,
-    lastName: cln,
-    number: fpn,
+    userid: userId,
+    name: cna,
+    phone: fpn,
     email: cem
   }
 
@@ -278,7 +277,7 @@ function loadContacts () {
           lContacts += "<tr id='c-row-" + i + "'>"
           lContacts += "<td id='cna-" + i + "'>" + '<span>' + jsonObject.results[i].name + '</span></td>'
           lContacts += "<td id='cpn-" + i + "'>" + '<span>' + jsonObject.results[i].email + '</span></td>'
-          lContacts += "<td id='cem-" + i + "'>" + '<span>' + jsonObject.results[i].number + '</span></td>'
+          lContacts += "<td id='cem-" + i + "'>" + '<span>' + jsonObject.results[i].phone + '</span></td>'
 
           // TODO: Add buttons into last column for edit/delete
           lContacts += '<td></td>'
