@@ -23,7 +23,7 @@
 			$conn->close();
 
 			http_response_code(409);
-			returnWithError("Username Conflict!");		
+			returnWithResult("Username Conflict!");		
 		} else {
 			$stmt = $conn->prepare("INSERT into Users (FirstName,LastName,Login,Password) VALUES(?,?,?,?)");
 			$stmt->bind_param("ssss", $firstname, $lastname, $login, $password);
@@ -33,7 +33,7 @@
 			$conn->close();
 
 			http_response_code(200);
-			returnWithError("User added!");		
+			returnWithResult("User added!");		
 		}
 		
 	}
@@ -49,9 +49,9 @@
 		echo $obj;
 	}
 
-	function returnWithError( $err )
+	function returnWithResult( $msg )
 	{
-		$retValue = '{"error":"' . $err . '"}';
+		$retValue = '{"message":"' . $msg . '"}';
 		sendResultInfoAsJson( $retValue );
 	}
 
