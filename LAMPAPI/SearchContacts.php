@@ -5,7 +5,6 @@
 	$searchResults = "";
 	$searchCount = 0;
 	
-
 	$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
 	if ($conn->connect_error) 
 	{
@@ -21,15 +20,18 @@
 		
 		while($row = $result->fetch_assoc())
 		{
-			
-			
+			if ($searchCount > 0) {
+				$searchResults .= ",";
+			}
+			searchCount++;
+			$searchResults .= '{"Name" : "' . $row["Name"]. '", , "Email" : "' . $row["Email"]. '", "Phone" : "' . $row["Phone"]. '"}';
 			//$searchResults .= 'firstname: "' . $row["Name"] . '",';
 			//$searchResults .= 'lastname: "' . $row["Email"] . '",';
 			//$searchResults .= 'phone: "' . $row["Phone"] . '",';
 			//$searchResults .= 'email: "' . $row["DateCreated"] . '"';
 			$searchCount++;
 
-			returnWithInfo( $row['Name'], $row['Email'], $row['Phone'], $row['DateCreated'] );
+			// returnWithInfo( $row['Name'], $row['Email'], $row['Phone'], $row['DateCreated'] );
 		}
 		
 		if( $searchCount == 0 )
