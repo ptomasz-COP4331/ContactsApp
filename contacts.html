@@ -42,7 +42,7 @@
         <input id="contactSearch" type='search' placeholder='Search' onkeyup="filterContacts()"/><br /> 
       </div>
       <div class='section add-form'>
-        <form action='' method='post' class='contact-form' id='add-contact-form' style='display:none'>
+        <form action='' method='post' class='contact-form' id='add-contact-form' style='display:none' onsubmit='return false'>
           <div class='form-row'>
             <input id='contact-name' name='name' type='text' placeholder='Name'/>
           </div>
