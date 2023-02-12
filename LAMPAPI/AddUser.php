@@ -28,13 +28,14 @@
 			$stmt = $conn->prepare("INSERT into Users (FirstName,LastName,Login,Password) VALUES(?,?,?,?)");
 			$stmt->bind_param("ssss", $firstname, $lastname, $login, $password);
 			$stmt->execute();
-			$res = $stmt->fetch();
+			$res = $stmt->get_result();
+			$row = $res->fetch_assoc()  
 
 			$stmt->close();
 			$conn->close();
 
 			http_response_code(200);
-			returnWithInfo( $res['firstName'], $res['lastName'], $res['ID'] );
+			returnWithInfo( $row['firstName'], $row['lastName'], $row['ID'] );
 		}
 		
 	}
