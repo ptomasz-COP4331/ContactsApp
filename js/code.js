@@ -276,8 +276,7 @@ function loadContacts () {
         let lContacts = ''
         for (let i = 0; i < jsonObject.results.length; i++) {
           lContacts += "<tr id='c-row-" + i + "'>"
-          lContacts += "<td id='cfn-" + i + "'>" + '<span>' + jsonObject.results[i].firstName + '</span></td>'
-          lContacts += "<td id='cln-" + i + "'>" + '<span>' + jsonObject.results[i].lastName + '</span></td>'
+          lContacts += "<td id='cna-" + i + "'>" + '<span>' + jsonObject.results[i].name + '</span></td>'
           lContacts += "<td id='cpn-" + i + "'>" + '<span>' + jsonObject.results[i].email + '</span></td>'
           lContacts += "<td id='cem-" + i + "'>" + '<span>' + jsonObject.results[i].number + '</span></td>'
 
