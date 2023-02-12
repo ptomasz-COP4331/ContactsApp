@@ -281,7 +281,7 @@ function loadContacts () {
           lContacts += "<td id='cem-" + i + "'>" + '<span>' + jsonObject.results[i].phone + '</span></td>'
 
           // TODO: Add buttons into last column for edit/delete
-          lContacts += '<td><button><span class="material-symbols-rounded">search</span><button>Save</button><button>Delete</button></td>'
+          lContacts += '<td><button><span class="material-symbols-rounded">edit</span><button><span class="material-symbols-rounded">save</span></button><button><span class="material-symbols-rounded">delete</span></button></td>'
           lContacts += '</tr>'
         }
 
