@@ -18,6 +18,11 @@
 			$stmt = $conn->prepare("INSERT into Users (FirstName,LastName,Login,Password) VALUES(?,?,?,?)");
 			$stmt->bind_param("ssss", $firstname, $lastname, $login, $password);
 			$stmt->execute();
+
+			if( mysql_errno() == 1062) {
+				http_response_code(409);
+				returnWithError("Username Taken");
+			}
 			$stmt->close();
 			$conn->close();
 			returnWithError("Added User!");
