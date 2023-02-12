@@ -1,4 +1,4 @@
-const urlBase = 'http://COP4331-23.com/LAMPAPI'
+const urlBase = 'https://COP4331-23.com/LAMPAPI'
 const extension = 'php'
 
 let userId = 0
@@ -35,7 +35,7 @@ function doLogin () {
   xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8')
   try {
     xhr.onreadystatechange = function () {
-      if (this.readyState == 4 && this.status == 200) {
+      if (this.readyState === 4 && this.status === 200) {
         const jsonObject = JSON.parse(xhr.responseText)
         userId = jsonObject.id
 
