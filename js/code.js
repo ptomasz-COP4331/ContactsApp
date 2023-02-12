@@ -174,6 +174,8 @@ function addContact () {
 
   const jsonPayload = JSON.stringify(tmp)
 
+  console.log(tmp)
+
   const url = urlBase + '/AddContact.' + extension
 
   const xhr = new XMLHttpRequest()
@@ -182,6 +184,7 @@ function addContact () {
   try {
     xhr.onreadystatechange = function () {
       if (this.readyState === 4 && this.status === 200) {
+        console.log(jsonPayload)
         console.log('New contact added')
         // loadContacts()
       }
