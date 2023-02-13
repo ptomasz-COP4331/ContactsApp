@@ -17,7 +17,7 @@
 	} 
 	else
 	{
-		$stmt = $conn->prepare("SELECT * FROM Contacts Name LIKE ? WHERE UserID=?");
+		$stmt = $conn->prepare("SELECT * FROM Contacts WHERE Name LIKE ? AND UserID=?");
 		$stmt->bind_param("ss", $query, $userId);
 		$stmt->execute();
 		
