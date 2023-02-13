@@ -275,12 +275,12 @@ table {
   border-radius: 5px;
   border: none;
   padding: 5px;
+  transition: ease-in;
+  transition-duration: 0.3s;
 }
 
 #contacts button:hover {
   background-color: var(--hover-color);
-  transition: ease-in;
-  transition-duration: 0.5s;
 }
 
 /* Tablet Styles */
