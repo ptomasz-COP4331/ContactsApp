@@ -14,7 +14,7 @@
 /* Global Settings */
 :root {
   --bg-color: #fcfbfa;
-  --contact-edit-color: #DEDCD5F5;
+  --hover-color: #DEDCD5F5;
   --font-size-header: 30px;
   --font-size-subheading: 24px;
   --font-size-input-labels: 18px;
@@ -256,12 +256,22 @@ table {
 
 #contacts input {
   font-family: 'IBM Plex Sans', sans-serif;
-  background-color: var(--contact-edit-color);
+  background-color: var(--hover-color);
   text-align: left;
   vertical-align: middle;
   font-size: 15px;
   width: 100%;
   /* margin-bottom: 2%; */
+  border-radius: 5px;
+  border: none;
+  padding: 5px;
+}
+
+#contacts button {
+  background-color: var(--hover-color);
+  text-align: center;
+  vertical-align: middle;
+  font-size: 16px;
   border-radius: 5px;
   border: none;
   padding: 5px;
