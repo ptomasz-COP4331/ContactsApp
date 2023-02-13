@@ -267,7 +267,8 @@ table {
   padding: 5px;
 }
 
-#contacts button {
+#contacts button,
+.actionButtons button {
   background-color: var(--background-color);
   text-align: center;
   vertical-align: middle;
@@ -279,7 +280,8 @@ table {
   transition-duration: 0.3s;
 }
 
-#contacts button:hover {
+#contacts button:hover,
+.actionButtons button {
   background-color: var(--hover-color);
 }
 
