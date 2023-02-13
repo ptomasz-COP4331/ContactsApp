@@ -281,7 +281,7 @@ table {
 }
 
 #contacts button:hover,
-.actionButtons button {
+.actionButtons button:hover {
   background-color: var(--hover-color);
 }
 
