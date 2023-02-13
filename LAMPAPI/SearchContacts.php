@@ -5,6 +5,10 @@
 	$searchResults = "";
 	$searchCount = 0;
 	
+	$query = $inData["query"];
+	$userId = $inData["userId"];
+
+	$query = "%" . $query . "%";
 
 	$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
 	if ($conn->connect_error) 
@@ -13,8 +17,8 @@
 	} 
 	else
 	{
-		$stmt = $conn->prepare("SELECT * FROM Contacts WHERE UserID=?");
-		$stmt->bind_param("s", $inData["userId"]);
+		$stmt = $conn->prepare("SELECT * FROM Contacts Name LIKE ? WHERE UserID=?");
+		$stmt->bind_param("ss", $query, $userId);
 		$stmt->execute();
 		
 		$result = $stmt->get_result();
