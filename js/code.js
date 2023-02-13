@@ -325,7 +325,6 @@ function deleteRow (i) {
 /**
  * loadContacts()
  * Populates the table with contacts of user
- * Note: Does not do search, that is local!
  */
 function loadContacts () {
   // Prepare JSON payload
