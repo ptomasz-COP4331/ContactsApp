@@ -278,8 +278,8 @@ table {
 }
 
 #contacts button:hover {
-  background-color: var(--focus-color);
-  transition:cubic-bezier(0.6, -0.28, 0.735, 0.045);
+  background-color: var(--hover-color);
+  /* transition:cubic-bezier(0.6, -0.28, 0.735, 0.045); */
 }
 
 /* Tablet Styles */
