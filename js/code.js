@@ -188,7 +188,7 @@ function addContact () {
       if (this.readyState === 4 && this.status === 200) {
         console.log(jsonPayload)
         console.log('New contact added')
-        // loadContacts()
+        loadContacts()
       }
     }
     xhr.send(jsonPayload)
@@ -328,8 +328,11 @@ function deleteRow (i) {
  */
 function loadContacts () {
   // Prepare JSON payload
+  const query = document.getElementById('contactSearch').value
+
   const tmp = {
-    userId
+    userId,
+    query
   }
 
   const jsonPayload = JSON.stringify(tmp)
@@ -369,29 +372,29 @@ function loadContacts () {
   }
 }
 
-function filterContacts () {
-  // Filter through contact table for names
-  const search = document.getElementById('contactSearch')
-  const searchIn = search.value.toUpperCase()
-  const table = document.getElementById('contacts')
-  const tr = table.getElementsByTagName('tr')
+// function filterContacts () {
+//   // Filter through contact table for names
+//   const search = document.getElementById('contactSearch')
+//   const searchIn = search.value.toUpperCase()
+//   const table = document.getElementById('contacts')
+//   const tr = table.getElementsByTagName('tr')
 
-  // Loop through each contact and see if it matches
-  for (let i = 0; i < tr.length; i++) {
-    const name = tr[i].getElementsByTagName('td')[0]
+//   // Loop through each contact and see if it matches
+//   for (let i = 0; i < tr.length; i++) {
+//     const name = tr[i].getElementsByTagName('td')[0]
 
-    if (name) {
-      const nameText = name.textContent || name.innerText
+//     if (name) {
+//       const nameText = name.textContent || name.innerText
 
-      tr[i].style.display = 'none'
-      if (nameText.toUpperCase().indexOf(searchIn) > -1) {
-        tr[i].style.display = ''
-      } else if (nameText.toUpperCase().indexOf(searchIn) > -1) {
-        tr[i].style.display = ''
-      }
-    }
-  }
-}
+//       tr[i].style.display = 'none'
+//       if (nameText.toUpperCase().indexOf(searchIn) > -1) {
+//         tr[i].style.display = ''
+//       } else if (nameText.toUpperCase().indexOf(searchIn) > -1) {
+//         tr[i].style.display = ''
+//       }
+//     }
+//   }
+// }
 
 // eslint-disable-next-line no-unused-vars
 function toggleAddForm () {
