@@ -14,6 +14,7 @@
 /* Global Settings */
 :root {
   --bg-color: #fcfbfa;
+  --contact-edit-color: #AEA997F9;
   --font-size-header: 30px;
   --font-size-subheading: 24px;
   --font-size-input-labels: 18px;
@@ -255,7 +256,7 @@ table {
 
 #contacts input {
   font-family: 'IBM Plex Sans', sans-serif;
-  background-color: var(--background-color);
+  background-color: var(--contact-edit-color);
   text-align: left;
   vertical-align: middle;
   font-size: 15px;
