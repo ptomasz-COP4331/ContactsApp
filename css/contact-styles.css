@@ -14,7 +14,9 @@
 /* Global Settings */
 :root {
   --bg-color: #fcfbfa;
+  --error-color: #BF8C8C;
   --hover-color: #DEDCD5F5;
+  --button-submit-color: #6F686D;
   --font-size-header: 30px;
   --font-size-subheading: 24px;
   --font-size-input-labels: 18px;
@@ -196,8 +198,8 @@ input:focus {
 
 .form-row input[type='text']:invalid,
 .form-row input[type='email']:invalid {
-  border: 1px solid #D55C5F;
-  border-radius: 3px;
+  border-left: 1px solid var(--error-color);
+  border-radius: 5px;
   /* color: #D55C5F; */
   box-shadow: none; /* Remove default red glow in Firefox */
 }
