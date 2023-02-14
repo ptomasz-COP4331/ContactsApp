@@ -191,6 +191,7 @@ input:focus {
 .form-row input[type='email'] {
   font-family: 'IBM Plex Sans', sans-serif;
   background-color: var(--background-color);
+  padding: 10px;
   border: none;
   width: 100%;
   font-size: 14px;
@@ -198,7 +199,7 @@ input:focus {
 
 .form-row input[type='text']:invalid,
 .form-row input[type='email']:invalid {
-  border-left: 1px solid var(--error-color);
+  border: 1px solid var(--error-color);
   border-radius: 5px;
   /* color: #D55C5F; */
   box-shadow: none; /* Remove default red glow in Firefox */
