@@ -239,6 +239,10 @@ table {
   /* background-color: #f6f6f6; */
 }
 
+#conacts tr:hover {
+  background-color: var(--hover-color);
+}
+
 #contacts th {
   padding: 15px;
   text-align: center;
