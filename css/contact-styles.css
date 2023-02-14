@@ -15,7 +15,7 @@
 :root {
   --bg-color: #fcfbfa;
   --error-color: #BF8C8C;
-  --edit-color: #CBB8A9;
+  --edit-color: #DEDCD5F5;
   --hover-color: #DEDCD5F5;
   --button-submit-color: #6F686D;
   --font-size-header: 30px;
@@ -237,10 +237,6 @@ table {
   /* border: 1px solid #8d8c8d; */
   border-radius: 5px;
   /* background-color: #f6f6f6; */
-}
-
-#contacts tr:hover {
-  background-color: var(--hover-color);
 }
 
 #contacts th {
