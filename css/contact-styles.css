@@ -239,7 +239,7 @@ table {
   /* background-color: #f6f6f6; */
 }
 
-#conacts tr:hover {
+#contacts tr:hover {
   background-color: var(--hover-color);
 }
 
