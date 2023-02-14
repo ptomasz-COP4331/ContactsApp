@@ -210,6 +210,7 @@ input:focus {
 .form-row button {
   font-size: 16px;
   font-weight: bold;
+  width: 100%;
 
   color: #FFFFFF;
   background-color: var(--button-submit-color);
@@ -220,14 +221,14 @@ input:focus {
   padding: 10px 40px;
   cursor: pointer;
 }
-
+/* 
 .form-row button:hover {
   background-color: #76AEED;
 }
 
 .form-row button:active {
   background-color: #407FC7;
-}
+} */
 
 /* Table */
 
