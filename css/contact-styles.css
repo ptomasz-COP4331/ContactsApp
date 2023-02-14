@@ -212,7 +212,7 @@ input:focus {
   font-weight: bold;
 
   color: #FFFFFF;
-  background-color: #5995DA;
+  background-color: var(--button-submit-color);
 
   border: none;
   border-radius: 3px;
