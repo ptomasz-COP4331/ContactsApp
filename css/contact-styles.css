@@ -201,7 +201,7 @@ input:focus {
 .form-row input[type='email']:invalid {
   border-left: 5px solid var(--error-color);
   border-radius: 3px;
-  padding: 5px;
+  /* padding: 5px; */
   /* color: #D55C5F; */
   box-shadow: none; /* Remove default red glow in Firefox */
 }
