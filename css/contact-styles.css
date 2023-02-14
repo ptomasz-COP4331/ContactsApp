@@ -15,6 +15,7 @@
 :root {
   --bg-color: #fcfbfa;
   --error-color: #BF8C8C;
+  --edit-color: #6F686D;
   --hover-color: #DEDCD5F5;
   --button-submit-color: #6F686D;
   --font-size-header: 30px;
@@ -260,7 +261,7 @@ table {
 
 #contacts input {
   font-family: 'IBM Plex Sans', sans-serif;
-  background-color: var(--hover-color);
+  background-color: var(--edit-color);
   text-align: left;
   vertical-align: middle;
   font-size: 15px;
