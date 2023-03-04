@@ -12,12 +12,24 @@
 }
 
 /* Global Settings */
-:root {
+/* :root {
     --bg-color: #fcfbfa;
     --font-size-header: 30px;
     --font-size-subheading: 24px;
     --font-size-input-labels: 18px;
-    /* background-color: var(--bg-color); */
+    background-color: var(--bg-color);
+} */
+
+:root {
+    --bg-color: #fcfbfa;
+    --error-color: #BF8C8C;
+    --edit-color: #DEDCD5F5;
+    --hover-color: #DEDCD5F5;
+    --button-submit-color: #6F686D;
+    --font-size-header: 30px;
+    --font-size-subheading: 24px;
+    --font-size-input-labels: 18px;
+    background-color: var(--bg-color);
   }
 
 /* Flex Sections */
@@ -99,11 +111,26 @@ img {
     border-radius: 25px;
 }
 
-input[type="text"],input[type="password"], input[type="contact-input"]{
+input:focus {
+    outline:none;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="contact-input"] {
+    font-family: 'IBM Plex Sans', sans-serif;
+    background-color: var(--background-color);
     text-align: left;
-    font-size: 16px;
+    font-size: 14px;
     width: 100%;
     margin-bottom: 2%;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    /* text-align: left;
+    font-size: 16px;
+    width: 100%;
+    margin-bottom: 2%; */
 }
 
 a {
@@ -113,14 +140,27 @@ a {
 
 .enterButton {
     display: block;
+    font-size: 16px;
+    font-weight: bold;
+    width: 100%;
+
+    color: #FFFFFF;
+    background-color: var(--button-submit-color);
+
+    border: none;
+    border-radius: 3px;
+
+    padding: 10px 40px;
+    cursor: pointer;
+    /* display: block;
     width: 100%;
     border: none;
-    background-color: #000000;
+    background-color: var(--button-submit-color);
     color: white;
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
-    text-align: center;
+    text-align: center; */
 }
 
 /* Contact Page */
